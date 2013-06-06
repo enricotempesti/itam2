@@ -1,0 +1,21 @@
+{% extends 'AitamIndexBundle::layout.html.twig' %}
+ 
+ 
+{% block body %}
+ <div class="main-col"> 
+ 
+ 
+{{   cal.enableDatePicker(2010,2020)  }} {# this enables the month's datepicker (year range 2002 - 2010) #}
+{{   cal.enableMonthNav(myurl)  }} {# this enables the month's navigation controls #}
+{{   cal.showMonth() | raw }} {# this displays the month's view #}
+ </div>
+            <div class="right_block">
+                
+               {% render "AitamAgendaBundle:Agenda:sidebar" %}
+            
+               {% block sidebar %}
+                   {{ parent() }}
+               {% endblock %}    
+            </div>
+{% endblock %}
+

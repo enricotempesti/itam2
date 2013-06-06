@@ -1,13 +1,69 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{% block title %}Italia.Amazonia.site{% endblock %}</title>
+<!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+{% block stylesheets %}
+<link href="{{ asset('css/style.css') }}" type="text/css"  rel="stylesheet" />
+<link href="{{ asset('css/screen.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" /> 
+{% block javascripts %}
+<script src="{{ asset('js/jquery.core.js') }}" type="text/javascript"></script> 
+<script src="{{ asset('js/jquery.superfish.js') }}" type="text/javascript"></script> 
+<script src="{{ asset('js/jquery.jcarousel.pack.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/jquery.easing.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/jquery.scripts.js') }}" type="text/javascript"></script>
+{% endblock %} 
+</head>
+<body>
+    <div id="wrap">
+    <div class="top_corner"></div>
+    <div id="main_container">
+    
+        <div id="header">
+            <div id="logo"><a href="/aitam/public/app_dev.php">
+			<img src="{{ asset('bundles/AitamIndex/images/logoitam.JPG') }}" alt="Italia Amazonia" width="338" height="72" border="0" title="italia amazzonia" /></a></div>
+            
+        {% block navigation %}
+			<div id="menu">
+                <ul>                                                                                            
+                    <li><a href="{{ path('AitamIndexBundle_homepage') }}">Home</a></li>
+                    <li><a href="{{ path('AitamIndexBundle_statuto') }}">It.AM.site</a></li>
+                    <li><a href="{{ path('AitamIndexBundle_progetti') }}">Progetti</a></li>
+                    <li><a href="{{ path('AitamIndexBundle_about') }}">About</a></li>
+                    <li><a href="{{ path('AitamIndexBundle_contact') }}">Contact</a></li>
+                    <li><a href="{{ path('login') }}">Login</a></li>
+                </ul>
+            </div>
+        {% endblock %}   
+        
+        </div>
+{% block body %}
+
+{% endblock %}
+
+{% block footer %}   
+        <div class="footer">
+        	<div class="copyright"><a href="http://csstemplatesmarket.com/"
+        	 target="_blank">&copy;</a> <a href="http://enricoblog.eu5.org/" 
+        	 target="_blank">by tempe projet</a></div>
+        
+        	<div class="footer_links">
+                <a class="current"  href="{{ path('AitamIndexBundle_homepage') }}">Home</a>
+                <a href="{{ path('AitamIndexBundle_statuto') }}">Statuto</a>
+                <a href="{{ path('AitamIndexBundle_progetti') }}">Progetti</a>
+                <a href="{{ path('AitamIndexBundle_about') }}">About</a>
+                <a href="{{ path('AitamIndexBundle_contact') }}">Contact</a>            
+            </div>
+        </div>
+{% endblock %} 
+      
+    
+    </div>
+</div>
+</body>
 </html>

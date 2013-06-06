@@ -1,0 +1,13 @@
+parameters:
+#    enrico_agenda.example.class: Enrico\AgendaBundle\Example
+
+services:
+#    enrico_agenda.example:
+#        class: %enrico_agenda.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+services:
+    ModuloCalendario:
+        class: Aitam\AgendaBundle\Helpers\ModuloCalendario
+        arguments: [@doctrine.orm.entity_manager]
+                    

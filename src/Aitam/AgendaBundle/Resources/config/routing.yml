@@ -1,0 +1,7 @@
+AitamAgendaBundle_agenda:
+    pattern:  /agenda/{monthID}/{yearID}
+    defaults: { _controller: AitamAgendaBundle:Agenda:calendario , monthID : 0 , yearID : 0}
+
+AitamAgendaBundle_infoevento:
+    pattern:  /infoevento/{id}
+    defaults: { _controller: AitamAgendaBundle:Agenda:Evento}

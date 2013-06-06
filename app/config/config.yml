@@ -1,6 +1,9 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: @AitamIndexBundle/Resources/config/config.yml }
+    - { resource: @AitamAgendaBundle/Resources/config/services.yml }
+    - { resource: @AitamAgendaBundle/Resources/config/config.yml }
 
 framework:
     secret:          "%secret%"
@@ -37,6 +40,9 @@ doctrine:
                     FOSUserBundle: ~
                     SonataUserBundle: ~
                     ApplicationSonataUserBundle: ~
+                    AitamIndexBundle: ~
+                    EnricoBlogBundle: ~
+                    AitamAgendaBundle: ~
  
 fos_user:
     db_driver:      orm # can be orm or odm
@@ -130,7 +136,7 @@ sonata_doctrine_orm_admin:
  
 sonata_user:
     security_acl:           false
-    impersonating_route:    _welcome # or any route you want to use
+    impersonating_route:    AitamIndexBundle_homepage # or any route you want to use
     class:                  # Entity Classes
         user:               Application\Sonata\UserBundle\Entity\User
         group:              Application\Sonata\UserBundle\Entity\Group
@@ -152,3 +158,77 @@ sonata_user:
             handler:            sonata.user.profile.form.handler.default
             name:               sonata_user_profile_form
             validation_groups:  [Profile]
+          
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+    
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    # java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        # closure:
+        #     jar: %kernel.root_dir%/java/compiler.jar
+        # yui_css:
+        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    # java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        # closure:
+        #     jar: %kernel.root_dir%/java/compiler.jar
+        # yui_css:
+        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar    
+
+services:
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
+    aitam.index.admin.dinuovo:
+      class: Aitam\IndexBundle\Admin\DinuovoAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: aitam_index, label: dinuovo }
+      arguments: [null, Aitam\IndexBundle\Entity\Dinuovo, AitamIndexBundle:DinuovoAdmin]
+      calls:
+          - [ setLabelTranslatorStrategy, [ @sonata.admin.label.strategy.underscore ] ] 
+      
+    aitam.index.admin.commenti:
+      class: Aitam\IndexBundle\Admin\CommentiAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: aitam_index, label: commenti }
+      arguments: [null, Aitam\IndexBundle\Entity\Commenti, AitamIndexBundle:CommentiAdmin]
+  
+    aitam.agenda.admin.agenda:
+      class: Aitam\AgendaBundle\Admin\AgendaAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, audit : false , group: enrico_blog, label: mynews }
+      arguments: [null, Aitam\AgendaBundle\Entity\Mynews, AitamAgendaBundle:AgendaAdmin]
+      calls:
+          - [ setLabelTranslatorStrategy, [ @sonata.admin.label.strategy.underscore ] ] 
+      
+  #simple_things_entity_audit:
+  #  audited_entities:
+  #      - Aitam/IndexBundle\Entity\Dinuovo
+  #      - Aitam/IndexBundle\Entity\Commenti
+  #      - Aitam/AgendaBundle\Entity\Mynews

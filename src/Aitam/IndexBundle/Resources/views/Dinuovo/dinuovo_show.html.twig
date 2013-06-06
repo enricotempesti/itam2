@@ -1,0 +1,53 @@
+{% extends 'AitamIndexBundle::layout.html.twig' %}
+{% block title %}{{ dinuovo.title }}{% endblock %}
+{% block body %}
+
+<a href="{{ path('AitamIndexBundle_home_dinuovo') }}"><h2>Cosa c'&egrave; di  nuovo</h2></a>
+<div class="center_content_pages">
+        
+   <div class="left_content">
+        <div class="block_wide">
+     <article class="dinuovo">
+        <header>
+            <div class="date"><time datetime="{{ dinuovo.created|date('c') }}">{{ dinuovo.created|localizeddate() }}</time></div>
+            <h2>{{ dinuovo.title }}</h2>
+        </header>
+        <img src="{{ asset(['bundles/AitamIndex/images/', dinuovo.image]|join) }}" alt="{{ dinuovo.title }} image not found" class="large"/>
+        <div>
+            <p>{{ dinuovo.articolo }}</p>
+        </div>
+    </article>
+
+    <section class="comments" id="comments">
+        <section class="previous-comments">
+            <h3>Commenti</h3>
+            {% include 'AitamIndexBundle:Commenti:commenti.html.twig' with { 'commenti': commenti } %}
+                    <h3>Aggiungi un commento</h3>
+            {% render 'AitamIndexBundle:Commenti:new' with { 'dinuovo_id' : dinuovo.id } %}
+        </section>
+    </section>
+            </div>
+        </div>
+            <div class="right_block">
+               {% block sidebar %}
+                   {{ parent() }}
+               {% endblock %}     
+            </div>
+			<div class="wide_content">
+            	<h2>Terms  Conditions</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+ nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, 
+ consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
+ labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+ ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>            
+            </div> 
+            
+   
+        
+        <div class="clear"></div>
+        </div>
+        {% endblock %}

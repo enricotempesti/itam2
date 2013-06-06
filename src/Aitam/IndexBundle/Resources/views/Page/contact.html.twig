@@ -1,0 +1,74 @@
+{% extends 'AitamIndexBundle::layout.html.twig' %}
+{% block title %}Contact.Aitam{% endblock%}
+{% block body %}
+ <div class="center_content_pages">
+        
+              <div class="financial-application-form">
+              {% if app.session.hasFlash('blogger-notice') %}
+                <div class="blogger-notice">
+                  {{ app.session.flash('blogger-notice') }}
+                </div>
+              {% endif %}
+             <h2>Spedisci un email</h2> 
+             <p>
+                Informazioni,consigli,suggerimenti,elogi critiche e quant'altro.
+             </p>
+              {% if app.session.hasFlash('contact-notice') %}
+                  <div class="contact-notice">
+                      {{ app.session.flash('contact-notice') }} <h3>messaggio inviato con successo</h3>
+                  </div>
+              {% endif %}
+              </br>
+
+    <form action="{{ path('AitamIndexBundle_contact') }}" method="post" {{ form_enctype(form) }} class="contact">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.web) }}
+        {{ form_row(form.subject) }}
+        {{ form_row(form.body) }}
+
+        {{ form_rest(form) }}
+
+        <input type="submit" value="Invia" />
+    </form>
+    </div>
+    </div>
+
+            
+             <div class="testimonials">
+                    <h2>Stories and Testimonials </h2>
+                    <p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                    
+                    <div class="testbox">
+                    <h4>Stories:  </h4>
+                    <p>
+                    Sed do eiusmod tempor incididunt
+                    </p>
+                    </div>
+                    
+                    <div class="testbox">
+                    <h4>It eiusmod tempor incididunt</h4>
+                    <p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                    </div>             
+                    <div class="testbox">
+                    <h4>It consectetur adipisicing elit</h4>
+                    <p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                    </div>               
+                    
+             </div>
+        
+        
+        
+   
+        
+        <div class="clear"></div>
+        </div>
+ {% endblock %}

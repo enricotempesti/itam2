@@ -1,0 +1,25 @@
+{% extends 'AitamIndexBundle::layout.html.twig' %}
+ 
+ 
+{% block body %}
+ 
+ <div class="main-col">
+ 
+
+
+                <h2> {{ sqlID.newstitle }}</h2>
+  			         {{ sqlID.infoevento}}
+  			         
+ </div>
+            <div class="right_block">
+                
+                {% render "AitamAgendaBundle:Agenda:sidebar" %}
+                
+               {% block sidebar %}
+                   {{ parent() }}
+               {% endblock %}
+                  
+            </div>
+            
+  	   	 
+{% endblock %}

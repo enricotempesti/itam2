@@ -1,0 +1,16 @@
+ 
+{% block body %}
+
+<div class="sidebar">
+    <h3> Ultimi Eventi </h3>
+          {% for sqlID in sqlID %}
+    <div class="sidebar">
+        <span class="highlight">
+            <a href="{{ path('AitamAgendaBundle_infoevento', { 'id': sqlID.id  }) }}">
+                        {{ sqlID.newstitle }}
+                </a></br> <br>
+                <time>{{ sqlID.newsdata | localizeddate }}</time></span></br></div>
+  	  {% endfor %}           
+
+    </div>
+{% endblock %}

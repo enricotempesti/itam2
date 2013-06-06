@@ -1,0 +1,23 @@
+<section class="sidebar">
+    <header>
+        <h3>Tutti gli ultimi commenti</h3></br>
+    </header>
+    {% for commenti in latestCommenti %}
+        <article class="comment">
+            <header>
+                <p class="small"><span class="highlight">{{ commenti.utente }}</span> commentato su </br>
+                    <a href="{{ path('AitamIndexBundle_dinuovo_show', { 'id': commenti.articolo.id,
+                                'slug': commenti.articolo.slug  }) }}-{{ commenti.id }}">
+                        {{ commenti.articolo.title }}
+                    </a></br>
+                      <em><time datetime="{{ commenti.created|date('c') }}">{{ commenti.created|created_ago }}</time></em>
+                </p>
+            </header>
+            <p>{{ commenti.commenti(100) }}</p>
+            </p>
+        </article>
+    {% else %}
+        <p>There are no recent comments</p>
+    {% endfor %}
+</section>
+
