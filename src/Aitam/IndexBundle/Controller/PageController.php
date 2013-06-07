@@ -40,7 +40,7 @@ class PageController extends Controller
             ->setBody($this->renderView('AitamIndexBundle:Page:contactEmail.txt.twig', array('enquiry' => $enquiry)));
         $this->get('mailer')->send($message);
 
-        $this->get('session')->setFlash('contact-notice', 'La tua richiesta è stata spedita con successo!');
+        $this->get('session')->setFlash('contact-notice', 'La tua richiesta ï¿½ stata spedita con successo!');
             // Perform some action, such as sending an email
 
             // Redirect - This is important to prevent users re-posting
@@ -72,6 +72,11 @@ class PageController extends Controller
     public function testimonialAction()
     {
     	return $this->render('AitamIndexBundle:Page:progetti.html.twig');
+    }
+    
+    public function forum_no_registratoAction()
+    {
+        return $this->render('AitamIndexBundle:Page:forum_no_registrato.html.twig');
     }
 
     public function sidebarAction()

@@ -52,4 +52,10 @@ AitamIndexBundle_testimonial:
     pattern:  /testimonial
     defaults: { _controller: AitamIndexBundle:Page:testimonial }
     requirements:
-        _method:  GET            
+        _method:  GET  
+
+AitamIndexBundle_forum_no_registrato:
+    pattern:  /forum_no_registrato
+    defaults: { _controller: AitamIndexBundle:Page:forum_no_registrato }
+    requirements:
+        _method:  GET 

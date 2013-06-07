@@ -134,9 +134,13 @@
         
             
             <div class="left_block_wide">
-                <h2>Comunity</h2>
-                
-                <a href="http://localhost/aitam/public/phpBB3/index.php"><img src="{{ asset('bundles/AitamIndex/images/p1.jpg') }}" alt="" title="" border="0" class="projects" /></a>
+                <h2>Comunity</h2> 
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <a href="http://localhost/itam/web/phpBB3/index.php"><img src="{{ asset('bundles/AitamIndex/images/p1.jpg') }}" alt="" title="" border="0" class="projects" /></a>
+                {% else %}
+                <a href="{{ path('AitamIndexBundle_forum_no_registrato') }}"><img src="{{ asset('bundles/AitamIndex/images/p1.jpg') }}" alt="" title="" border="0" class="projects" /></a>
+                {% endif %}
+ 
                 <a href="{{ path('AitamIndexBundle_testimonial') }}"><img src="{{ asset('bundles/AitamIndex/images/p2.jpg') }}" alt="" title="" border="0" class="projects" /></a>
                 <a href="{{ path('AitamAgendaBundle_agenda') }}"><img src="{{ asset('bundles/AitamIndex/images/p3.jpg') }}" alt="" title="" border="0" class="projects" /></a>
             
