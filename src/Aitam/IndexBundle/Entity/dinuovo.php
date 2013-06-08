@@ -302,7 +302,7 @@ class Dinuovo
     
     public function __toString()
     {
-    	return $this->getTitle();
+    	return $this->getTitle()."";
     }
 
     /**
@@ -338,7 +338,7 @@ class Dinuovo
     protected function getUploadRootDir($basepath)
     {
     	// the absolute directory path where uploaded documents should be saved
-    	return __DIR__.'/../../../../public/'.$this->getUploadDir();
+    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
     
     protected function getUploadDir()

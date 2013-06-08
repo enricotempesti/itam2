@@ -36,8 +36,8 @@ AitamIndexBundle_dinuovo_show:
         id: \d+
 
 AitamIndexBundle_home_dinuovo:
-    pattern:  /home_dinuovo
-    defaults: { _controller: AitamIndexBundle:Dinuovo:home_dinuovo }
+    pattern:  /home_dinuovo/{page}
+    defaults: { _controller: AitamIndexBundle:Dinuovo:home_dinuovo,page: 1 }
     requirements:
         _method:  GET 
         

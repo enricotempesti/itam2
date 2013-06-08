@@ -1,6 +1,10 @@
 <form action="{{ path('AitamIndexBundle_comment_create', { 'dinuovo_id' : commenti.articolo.id } ) }}" method="post" {{ form_enctype(form) }} class="contact_c">
     {{ form_widget(form) }}
-    <p>
-        <input type="submit" value="Invia">
-    </p>
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <p><input type="submit" value="Invia"> </p>
+                {% else %}
+                <p>Per lasciare un commento devi essere registrato</p></br>
+                <a href="{{ path('fos_user_registration_register') }}"> iscriviti è semplice  </a>
+                {% endif %}
+
 </form>
