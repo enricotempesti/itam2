@@ -3,8 +3,8 @@
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <p><input type="submit" value="Invia"> </p>
                 {% else %}
-                <p>Per lasciare un commento devi essere registrato</p></br>
-                <a href="{{ path('fos_user_registration_register') }}"> iscriviti è semplice  </a>
+                </br><h3><p>Per lasciare un commento devi essere registrato :</p></br>
+                <a href="{{ path('fos_user_registration_register') }}"> iscriviti  qui  </h3></a>
                 {% endif %}
 
 </form>
