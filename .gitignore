@@ -2,4 +2,6 @@
 /app/logs
 /vendor
 /vendor
+/web/phpBB3/cache
 /web\phpBB3/cache
+/nbproject
