@@ -1,0 +1,5 @@
+Aitam\IndexBundle\Entity\dinuovo:
+    properties:
+        file:
+            - Image: ~## YAML Template.
+

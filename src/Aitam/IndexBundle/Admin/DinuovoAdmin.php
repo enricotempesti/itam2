@@ -41,7 +41,7 @@ class DinuovoAdmin extends Admin
             ->add('title')
             ->add('author')
             ->add('articolo')
-            ->add('file', 'file', array('required' => false))             
+            ->add('file', 'file', array('label' => 'Immagine', 'required' => false));            
         ;
     }
 
@@ -77,16 +77,5 @@ class DinuovoAdmin extends Admin
         ;
     }
     
-  public function prePersist($file) {
-    $this->saveFile($file);
-  }
 
-  public function preUpdate($file) {
-    $this->saveFile($file);
-  }
- 
-  public function saveFile($file) {
-    $basepath = $this->getRequest()->getBasePath();
-    $file->upload($basepath);    
-  }
 }

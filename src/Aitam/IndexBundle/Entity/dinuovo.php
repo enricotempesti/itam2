@@ -1,4 +1,5 @@
 <?php
+
 // src/Aitam/IndexBundle/Entity/Dinuovo.php
 
 namespace Aitam\IndexBundle\Entity;
@@ -12,8 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="dinuovo")
  * @ORM\HasLifecycleCallbacks()
  */
-class Dinuovo
-{
+class Dinuovo {
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -37,7 +38,7 @@ class Dinuovo
     protected $articolo;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string")
      */
     protected $image;
 
@@ -60,53 +61,48 @@ class Dinuovo
      * @ORM\Column(type="datetime")
      */
     protected $updated;
-    
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     public $path;
-    
+
     /**
      * @Assert\File(maxSize="6000000")
      */
     public $file;
-    
-    public function slugify($text)
-    {
-    	// replace non letter or digits by -
-    	$text = preg_replace('#[^\\pL\d]+#u', '-', $text);
-    
-    	// trim
-    	$text = trim($text, '-');
-    
-    	// transliterate
-    	if (function_exists('iconv'))
-    	{
-    		$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-    	}
-    
-    	// lowercase
-    	$text = strtolower($text);
-    
-    	// remove unwanted characters
-    	$text = preg_replace('#[^-\w]+#', '', $text);
-    
-    	if (empty($text))
-    	{
-    		return 'n-a';
-    	}
-    
-    	return $text;
+
+    public function slugify($text) {
+        // replace non letter or digits by -
+        $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // transliterate
+        if (function_exists('iconv')) {
+            $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        }
+
+        // lowercase
+        $text = strtolower($text);
+
+        // remove unwanted characters
+        $text = preg_replace('#[^-\w]+#', '', $text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
-    
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -115,8 +111,7 @@ class Dinuovo
      *
      * @param string $title
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
         $this->setSlug($this->title);
     }
@@ -126,8 +121,7 @@ class Dinuovo
      *
      * @return string 
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -136,8 +130,7 @@ class Dinuovo
      *
      * @param string $author
      */
-    public function setAuthor($author)
-    {
+    public function setAuthor($author) {
         $this->author = $author;
     }
 
@@ -146,8 +139,7 @@ class Dinuovo
      *
      * @return string 
      */
-    public function getAuthor()
-    {
+    public function getAuthor() {
         return $this->author;
     }
 
@@ -156,8 +148,7 @@ class Dinuovo
      *
      * @param text $articolo
      */
-    public function setArticolo($articolo)
-    {
+    public function setArticolo($articolo) {
         $this->articolo = $articolo;
     }
 
@@ -166,21 +157,19 @@ class Dinuovo
      *
      * @return text 
      */
-    public function getArticolo($length = null)
-    {
-    if (false === is_null($length) && $length > 0)
-        return substr($this->articolo, 0, $length);
-    else
-        return $this->articolo;
+    public function getArticolo($length = null) {
+        if (false === is_null($length) && $length > 0)
+            return substr($this->articolo, 0, $length);
+        else
+            return $this->articolo;
     }
-    
+
     /**
      * Set image
      *
      * @param string $image
      */
-    public function setImage($image)
-    {
+    public function setImage($image) {
         $this->image = $image;
     }
 
@@ -189,8 +178,7 @@ class Dinuovo
      *
      * @return string 
      */
-    public function getImage()
-    {
+    public function getImage() {
         return $this->image;
     }
 
@@ -199,8 +187,7 @@ class Dinuovo
      *
      * @param text $tags
      */
-    public function setTags($tags)
-    {
+    public function setTags($tags) {
         $this->tags = $tags;
     }
 
@@ -209,8 +196,7 @@ class Dinuovo
      *
      * @return text 
      */
-    public function getTags()
-    {
+    public function getTags() {
         return $this->tags;
     }
 
@@ -219,8 +205,7 @@ class Dinuovo
      *
      * @param datetime $created
      */
-    public function setCreated($created)
-    {
+    public function setCreated($created) {
         $this->created = $created;
     }
 
@@ -229,8 +214,7 @@ class Dinuovo
      *
      * @return datetime 
      */
-    public function getCreated()
-    {
+    public function getCreated() {
         return $this->created;
     }
 
@@ -239,8 +223,7 @@ class Dinuovo
      *
      * @param datetime $updated
      */
-    public function setUpdated($updated)
-    {
+    public function setUpdated($updated) {
         $this->updated = $updated;
     }
 
@@ -249,25 +232,22 @@ class Dinuovo
      *
      * @return datetime 
      */
-    public function getUpdated()
-    {
+    public function getUpdated() {
         return $this->updated;
     }
-    
-    public function __construct()
-    {
+
+    public function __construct() {
         $this->comments = new ArrayCollection();
 
         $this->setCreated(new \DateTime());
         $this->setUpdated(new \DateTime());
     }
-    
+
     /**
      * @ORM\preUpdate
      */
-    public function setUpdatedValue()
-    {
-    	$this->setUpdated(new \DateTime());
+    public function setUpdatedValue() {
+        $this->setUpdated(new \DateTime());
     }
 
     /**
@@ -275,8 +255,7 @@ class Dinuovo
      *
      * @param Aitam\IndexBundle\Entity\Commenti $commenti
      */
-    public function addComment(\Aitam\IndexBundle\Entity\Commenti $commenti)
-    {
+    public function addComment(\Aitam\IndexBundle\Entity\Commenti $commenti) {
         $this->commenti[] = $commenti;
     }
 
@@ -285,8 +264,7 @@ class Dinuovo
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getCommenti()
-    {
+    public function getCommenti() {
         return $this->commenti;
     }
 
@@ -295,14 +273,12 @@ class Dinuovo
      *
      * @param Aitam\IndexBundle\Entity\Commenti $commenti
      */
-    public function addCommenti(\Aitam\IndexBundle\Entity\Commenti $commenti)
-    {
+    public function addCommenti(\Aitam\IndexBundle\Entity\Commenti $commenti) {
         $this->commenti[] = $commenti;
     }
-    
-    public function __toString()
-    {
-    	return $this->getTitle()."";
+
+    public function __toString() {
+        return $this->getTitle() . "";
     }
 
     /**
@@ -310,8 +286,7 @@ class Dinuovo
      *
      * @param string $slug
      */
-    public function setSlug($slug)
-    {
+    public function setSlug($slug) {
         $this->slug = $this->slugify($slug);
     }
 
@@ -320,54 +295,94 @@ class Dinuovo
      *
      * @return string 
      */
-    public function getSlug()
-    {
+    public function getSlug() {
         return $this->slug;
     }
-    
-    public function getAbsolutePath()
-    {
-    	return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
+
+    public function getAbsolutePath() {
+        return null === $this->image ? null : $this->getUploadRootDir() . '/' . $this->image;
     }
-    
-    public function getWebPath()
-    {
-    	return null === $this->image ? null : $this->getUploadDir().'/'.$this->image;
+
+    public function getWebPath() {
+        return null === $this->image ? null : $this->getUploadDir() . '/' . $this->image;
     }
-    
-    protected function getUploadRootDir($basepath)
-    {
-    	// the absolute directory path where uploaded documents should be saved
-    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
+
+    protected function getUploadRootDir() {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
     }
-    
-    protected function getUploadDir()
-    {
-    	// get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-    	return '/bundles/AitamIndex/images';
+
+    protected function getUploadDir() {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return '/bundles/AitamIndex/images';
     }
-    
-    public function upload($basepath)
+
+    /**
+     * @ORM\prePersist
+     */
+    public function preUpload() {
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $this->image = uniqid() . '.' . $this->file->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\postPersist
+     */
+    public function upload() {
+        if (null === $this->file) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move($this->getUploadRootDir(), $this->image);
+
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\postRemove
+     */
+    public function removeUpload() {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Dinuovo
+     */
+    public function setPath($path)
     {
-    	// the file property can be empty if the field is not required
-    	if (null === $this->file) {
-    		return;
-    	}
-    	 
-    	if (null === $basepath) {
-    		return;
-    	}
-    	 
-    	// we use the original file name here but you should
-    	// sanitize it at least to avoid any security issues
+        $this->path = $path;
     
-    	// move takes the target directory and then the target filename to move to
-    	$this->file->move($this->getUploadRootDir($basepath), $this->file->getClientOriginalName());
-    
-    	// set the path property to the filename where you'ved saved the file
-    	$this->setImage($this->file->getClientOriginalName());
-    
-    	// clean up the file property as you won't need it anymore
-    	$this->file = null;
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Remove commenti
+     *
+     * @param \Aitam\IndexBundle\Entity\Commenti $commenti
+     */
+    public function removeCommenti(\Aitam\IndexBundle\Entity\Commenti $commenti)
+    {
+        $this->commenti->removeElement($commenti);
     }
 }
