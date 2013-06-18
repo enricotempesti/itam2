@@ -43,6 +43,7 @@ doctrine:
                     AitamIndexBundle: ~
                     EnricoBlogBundle: ~
                     AitamAgendaBundle: ~
+                    AitamDavisitareBundle: ~
  
 fos_user:
     db_driver:      orm # can be orm or odm
@@ -226,9 +227,25 @@ services:
       arguments: [null, Aitam\AgendaBundle\Entity\Mynews, AitamAgendaBundle:AgendaAdmin]
       calls:
           - [ setLabelTranslatorStrategy, [ @sonata.admin.label.strategy.underscore ] ] 
+          
+    aitam.davisitare.admin.davisitare:
+      class: Aitam\DavisitareBundle\Admin\DavisitareAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: aitam_davisitare, label: davisitare }
+      arguments: [null, Aitam\DavisitareBundle\Entity\Davisitare, AitamDavisitareBundle:DavisitareAdmin]
+      calls:
+          - [ setLabelTranslatorStrategy, [ @sonata.admin.label.strategy.underscore ] ] 
+      
+    aitam.davisitare.admin.commentidavisitare:
+      class: Aitam\DavisitareBundle\Admin\CommentiDavisitareAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: aitam_davisitare, label: commentidavisitare }
+      arguments: [null, Aitam\DavisitareBundle\Entity\Commentidavisitare, AitamDavisitareBundle:CommentidavisitareAdmin]
       
   #simple_things_entity_audit:
   #  audited_entities:
   #      - Aitam/IndexBundle\Entity\Dinuovo
   #      - Aitam/IndexBundle\Entity\Commenti
   #      - Aitam/AgendaBundle\Entity\Mynews
+  #      - Aitam/IndexBundle\Entity\Davisitare
+  #      - Aitam/IndexBundle\Entity\Commentidavisitare

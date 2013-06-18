@@ -1,0 +1,22 @@
+ 
+        
+AitamDavisitareBundle_davisitare_show:
+    pattern:  /davisitare/{id}/{slug}
+    defaults: { _controller: AitamDavisitareBundle:Davisitare:Davisitare }
+    requirements:
+        _method:  GET
+        id: \d+
+
+AitamDavisitareBundle_home_davisitare:
+    pattern:  /home_davisitare
+    defaults: { _controller: AitamDavisitareBundle:Davisitare:home_davisitare }
+    requirements:
+        _method:  GET 
+        
+AitamDavisitareBundle_comment_create:
+    pattern:  /commenti/{davisitare_id}
+    defaults: { _controller: AitamDavisitareBundle:Commenti:create }
+    requirements:
+        _method:  POST
+        blog_id: \d+ 
+           

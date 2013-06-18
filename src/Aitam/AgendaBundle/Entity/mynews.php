@@ -32,7 +32,7 @@ class Mynews
     protected $newstitle;
  
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100 , nullable = true)
      */
     protected $newslink;
     

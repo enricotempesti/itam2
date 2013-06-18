@@ -1,0 +1,53 @@
+{% extends 'AitamDavisitareBundle::layout.html.twig' %}
+{% block title %}{{ davisitare.title }}{% endblock %}
+{% block body %}
+
+<a href="{{ path('AitamDavisitareBundle_home_davisitare') }}"><h2>Da visitare</h2></a>
+<div class="center_content_pages">
+        
+   <div class="left_content">
+        <div class="block_wide">
+     <article class="dinuovo">
+        <header>
+            <div class="date"><time datetime="{{ davisitare.created|date('c') }}">{{ davisitare.created|localizeddate() }}</time></div>
+            <h2>{{ davisitare.title }}</h2>
+        </header>
+        <img src="{{ asset(['bundles/AitamDavisitare/images/', davisitare.image]|join) }}" alt="{{ davisitare.title }} image not found" class="large"/>
+        <div>
+            <p>{{ davisitare.articolo }}</p>
+        </div>
+    </article>
+
+    <section class="comments" id="comments">
+        <section class="previous-comments">
+            <h3>Commenti</h3>
+            {% include 'AitamDavisitareBundle:Commentidavisitare:commentidavisitare.html.twig' with { 'commenti': commenti } %}
+                    <h3>Aggiungi un commento</h3>
+            {% render 'AitamDavisitareBundle:Commentidavisitare:new' with { 'davisitare_id' : davisitare.id } %}
+        </section>
+    </section>
+            </div>
+        </div>
+            <div class="right_block">
+               {% block sidebar %}
+                   {{ parent() }}
+               {% endblock %}     
+            </div>
+			<div class="wide_content">
+            	<h2>Terms  Conditions</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+ nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, 
+ consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
+ labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+ ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>            
+            </div> 
+            
+   
+        
+        <div class="clear"></div>
+        </div>
+        {% endblock %}

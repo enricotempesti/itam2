@@ -1,3 +1,7 @@
+aitam_davisitare:
+    resource: "@AitamDavisitareBundle/Resources/config/routing.yml"
+    prefix:   /
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
  
@@ -51,4 +55,7 @@ EnricoBlogBundle:
     prefix:   / 
 AitamAgendaBundle:
     resource: "@AitamAgendaBundle/Resources/config/routing.yml"
+    prefix:   /
+AitamDavisitareBundle:
+    resource: "@AitamDavisitareBundle/Resources/config/routing.yml"
     prefix:   /

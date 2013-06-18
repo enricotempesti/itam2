@@ -1,0 +1,9 @@
+<form action="{{ path('AitamDavisitareBundle_comment_create', { 'davisitare_id' : commentidavisitare.articolo.id } ) }}" method="post" {{ form_enctype(form) }} class="contact_c">
+    {{ form_widget(form) }}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <p><input type="submit" value="Invia"> </p>
+                {% else %}
+                </br><h3><p>Per lasciare un commento devi essere registrato :</p></br>
+                <a href="{{ path('fos_user_registration_register') }}"> iscriviti  qui  </h3></a>
+                {% endif %}
+</form>

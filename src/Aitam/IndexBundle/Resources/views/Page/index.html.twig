@@ -65,7 +65,7 @@
       
             <img src="{{ asset('bundles/AitamIndex/images/icon1.gif') }}" alt="" title="" class="home_section_icon" border="0">
                       
-                <h2 class="home_title">Cosa c'&egrave; di nuovo</h2>
+                <h2 class="home_title">Cosa c'&egrave; di nuovo</h2></br>
                 <div class="home_subtitle">Avvenimenti a manaus e dintorni</div>
     
                 <div class="home_section_thumb">
@@ -97,26 +97,40 @@
         <div class="home_section_left2">
             <img src="{{ asset('bundles/AitamIndex/images/icon2.gif') }}" alt="" title="" class="home_section_icon" border="0">
                             
-                <h2 class="home_title">Da visitare</h2>
-                <div class="home_subtitle">Tempor incididunt ut labore</div>
+                <h2 class="home_title">Da visitare</h2></br>
+                <div class="home_subtitle">Dove poter andare</div>
     
                 <div class="home_section_thumb">
                 <img src="{{ asset('bundles/AitamIndex/images/home_section_thumb2.jpg') }}" alt="" title="" border="0">
                 </div>
-                <p><span>Lorem ipsum dolor sit ame</span><br>
-                Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. 
-                <br> <br>
-                <span>Lorem ipsum dolor sit ame</span><br>
-                Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. 
-                </p>
-                <a href="" class="more"><img src="{{ asset('bundles/AitamIndex/images/more.gif') }}" alt="" title="" border="0"></a>
-        <div class="clear"></div>
-        </div>
+        <div> 
+    {% block blog2 %}
+    {% for davisitare in davisitare %}
+
+                <div class="dinuovo">
+                    <article
+                        <div class="date"><time datetime="{{ davisitare.created|date('c') }}">
+            {{ davisitare.created|localizeddate() }}</time>
+                                    <header>
+                                        <h3><a href="{{ path('AitamDavisitareBundle_home_davisitare') }}">{{ davisitare.title }}</a></h3>
+                                    </header>
+
+                                    <img src="{{ asset(['bundles/AitamDavisitare/images/', davisitare.image]|join) }}" alt="{{ davisitare.title }} image not found" class="small"/>
+                                    <div class="snippet">
+                                        <p>{{ davisitare.articolo(40)}}.......</p>
+                                    </div></div>
+    {% else %}
+                                <p>non ci sono nuove entrate</p>
+    {% endfor %}
+
+    {% endblock %}       
+                        </div> </article> 
+                    </div>
         
         <div class="home_section_left3">
             <img src="{{ asset('bundles/AitamIndex/images/icon3.gif') }}" alt="" title="" class="home_section_icon" border="0">
                             
-                <h2 class="home_title">Opportunit&agrave;</h2>
+                <h2 class="home_title">Opportunit&agrave;</h2></br>
                 <div class="home_subtitle">Vista di manaus</div>
     
                 <div class="home_section_thumb">
