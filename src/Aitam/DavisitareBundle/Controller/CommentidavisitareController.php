@@ -42,9 +42,9 @@ class CommentidavisitareController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('AitamDavisitareBundle_davisitare_show', array(
-                'id' => $commenti->getarticolo()->getId(),
-                'slug'  => $commenti->getArticolo()->getSlug())) .
-                '#commenti-' . $commenti->getId()
+                'id' => $commentidavisitare->getarticolo()->getId(),
+                'slug'  => $commentidavisitare->getArticolo()->getSlug())) .
+                '#commenti-' . $commentidavisitare->getId()
             );
 
         }

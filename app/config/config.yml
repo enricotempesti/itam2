@@ -44,6 +44,7 @@ doctrine:
                     EnricoBlogBundle: ~
                     AitamAgendaBundle: ~
                     AitamDavisitareBundle: ~
+                    AitamOpportunitaBundle: ~
  
 fos_user:
     db_driver:      orm # can be orm or odm
@@ -241,6 +242,20 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: aitam_davisitare, label: commentidavisitare }
       arguments: [null, Aitam\DavisitareBundle\Entity\Commentidavisitare, AitamDavisitareBundle:CommentidavisitareAdmin]
+      
+    aitam.Opportunita.admin.Opportunita:
+      class: Aitam\OpportunitaBundle\Admin\OpportunitaAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: aitam_Opportunita, label: Opportunita }
+      arguments: [null, Aitam\OpportunitaBundle\Entity\Opportunita, AitamOpportunitaBundle:OpportunitaAdmin]
+      calls:
+          - [ setLabelTranslatorStrategy, [ @sonata.admin.label.strategy.underscore ] ] 
+      
+    aitam.Opportunita.admin.commentiOpportunita:
+      class: Aitam\OpportunitaBundle\Admin\CommentiOpportunitaAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: aitam_Opportunita, label: commentiOpportunita }
+      arguments: [null, Aitam\OpportunitaBundle\Entity\CommentiOpportunita, AitamOpportunitaBundle:CommentiOpportunitaAdmin]
       
   #simple_things_entity_audit:
   #  audited_entities:

@@ -1,8 +1,8 @@
-{% extends 'AitamDavisitareBundle::layout.html.twig' %}
+{% extends 'AitamOpportnitaBundle::layout.html.twig' %}
 
 {% block title %}Scrivi un commento{% endblock%}
 
 {% block body %}
     <h1>Scrivi un commento per questo articolo "{{ commenti.articolo.title }}"</h1>
-    {% include 'AitamDavisitareBundle:Commenti:form.html.twig' with { 'form': form } %}
+    {% include 'AitamopportunitaBundle:Commenti:form.html.twig' with { 'form': form } %}
 {% endblock %}

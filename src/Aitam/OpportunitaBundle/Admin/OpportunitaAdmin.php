@@ -1,5 +1,5 @@
 <?php
-namespace Aitam\DavisitareBundle\Admin;
+namespace Aitam\OpportunitaBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -11,7 +11,7 @@ use Knp\Menu\ItemInterface as MenuItemInterface;
 
 use Aitam\DavisitareBundle\Entity\Commentidavisitare;
 
-class DavisitareAdmin extends Admin
+class OpportunitaAdmin extends Admin
 {
 	/**
      * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
@@ -76,5 +76,5 @@ class DavisitareAdmin extends Admin
             ->add('image')
         ;
     }
-
+    
 }

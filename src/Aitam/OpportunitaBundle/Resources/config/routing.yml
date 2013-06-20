@@ -1,0 +1,22 @@
+ 
+        
+AitamOpportunitaBundle_Opportunita_show:
+    pattern:  /Opportunita/{id}/{slug}
+    defaults: { _controller: AitamOpportunitaBundle:Opportunita:Opportunita }
+    requirements:
+        _method:  GET
+        id: \d+
+
+AitamOpportunitaBundle_home_Opportunita:
+    pattern:  /home_Opportunita
+    defaults: { _controller: AitamOpportunitaBundle:Opportunita:home_Opportunita }
+    requirements:
+        _method:  GET 
+        
+AitamOpportunitaBundle_comment_create:
+    pattern:  /commentiopportunita/{opportunita_id}
+    defaults: { _controller: AitamOpportunitaBundle:Commentiopportunita:create }
+    requirements:
+        _method:  POST
+        blog_id: \d+ 
+           

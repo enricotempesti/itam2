@@ -1,5 +1,7 @@
 <?php
 
+// src/Aitam/IndexBundle/Entity/Dinuovo.php
+
 namespace Aitam\DavisitareBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -298,7 +300,7 @@ class Davisitare {
 
     protected function getUploadRootDir() {
         // the absolute directory path where uploaded documents should be saved
-        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+        return __DIR__ . '/../../../../public/' . $this->getUploadDir();
     }
 
     protected function getUploadDir() {
@@ -368,7 +370,7 @@ class Davisitare {
     /**
      * Remove commenti
      *
-     * @param \Aitam\DavisitareBundle\Entity\Commentidavisitare $commentidavisitare
+     * @param \Aitam\IndexBundle\Entity\Commentidavisitare $commentidavisitare
      */
     public function removeCommentidavisitare(\Aitam\DavisitareBundle\Entity\Commentidavisitare $commentidavisitare)
     {

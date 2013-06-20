@@ -1,17 +1,17 @@
 <?php
 
-namespace Aitam\DavisitareBundle\Entity;
+namespace Aitam\OpportunitaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Aitam\DavisitareBundle\Repository\DavisitareRepository")
- * @ORM\Table(name="davisitare")
+ * @ORM\Entity(repositoryClass="Aitam\OpportunitaBundle\Repository\OpportunitaRepository")
+ * @ORM\Table(name="Opportunita")
  * @ORM\HasLifecycleCallbacks()
  */
-class Davisitare {
+class Opportunita {
 
     /**
      * @ORM\Id
@@ -46,9 +46,9 @@ class Davisitare {
     protected $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity="Commentidavisitare", mappedBy="articolo")
+     * @ORM\OneToMany(targetEntity="Commentiopportunita", mappedBy="articolo")
      */
-    protected $commentidavisitare;
+    protected $commentiopportunita;
 
     /**
      * @ORM\Column(type="datetime")
@@ -248,23 +248,6 @@ class Davisitare {
         $this->setUpdated(new \DateTime());
     }
 
-    /**
-     * Get commentidavisitare
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getCommentidavisitare() {
-        return $this->commentidavisitare;
-    }
-
-    /**
-     * Add commentidavisitare
-     *
-     * @param Aitam\DavisitareBundle\Entity\Commentidavisitare $commentidavisitare
-     */
-    public function addCommentidavisitare(\Aitam\DavisitareBundle\Entity\Commentidavisitare $commentidavisitare) {
-        $this->commentidavisitare[] = $commentidavisitare;
-    }
 
     public function __toString() {
         return $this->getTitle() . "";
@@ -303,7 +286,7 @@ class Davisitare {
 
     protected function getUploadDir() {
         // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return '/bundles/AitamDavisitare/images';
+        return '/bundles/AitamOpportunita/images';
     }
 
     /**
@@ -366,12 +349,35 @@ class Davisitare {
     }
 
     /**
-     * Remove commenti
+     * Add commentiopportunita
      *
-     * @param \Aitam\DavisitareBundle\Entity\Commentidavisitare $commentidavisitare
+     * @param \Aitam\OpportunitaBundle\Entity\Commentiopportunita $commentiopportunita
+     * @return Opportunita
      */
-    public function removeCommentidavisitare(\Aitam\DavisitareBundle\Entity\Commentidavisitare $commentidavisitare)
+    public function addCommentiopportunita(\Aitam\OpportunitaBundle\Entity\Commentiopportunita $commentiopportunita)
     {
-        $this->commentidavisitare->removeElement($commentidavisitare);
+        $this->commentiopportunita[] = $commentiopportunita;
+    
+        return $this;
+    }
+
+    /**
+     * Remove commentiopportunita
+     *
+     * @param \Aitam\OpportunitaBundle\Entity\Commentiopportunita $commentiopportunita
+     */
+    public function removeCommentiopportunita(\Aitam\OpportunitaBundle\Entity\Commentiopportunita $commentiopportunita)
+    {
+        $this->commentiopportunita->removeElement($commentiopportunita);
+    }
+
+    /**
+     * Get commentiopportunita
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCommentiopportunita()
+    {
+        return $this->commentiopportunita;
     }
 }

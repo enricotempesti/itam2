@@ -1,0 +1,53 @@
+{% extends 'AitamOpportunitaBundle::layout.html.twig' %}
+{% block title %}{{ opportunita.title }}{% endblock %}
+{% block body %}
+
+<a href="{{ path('AitamOpportunitaBundle_home_Opportunita') }}"><h2>Opportunita</h2></a>
+<div class="center_content_pages">
+        
+   <div class="left_content">
+        <div class="block_wide">
+     <article class="dinuovo">
+        <header>
+            <div class="date"><time datetime="{{ opportunita.created|date('c') }}">{{ opportunita.created|localizeddate() }}</time></div>
+            <h2>{{ opportunita.title }}</h2>
+        </header>
+        <img src="{{ asset(['bundles/AitamOpportunita/images/', opportunita.image]|join) }}" alt="{{ opportunita.title }} image not found" class="large"/>
+        <div>
+            <p>{{ opportunita.articolo }}</p>
+        </div>
+    </article>
+
+    <section class="comments" id="comments">
+        <section class="previous-comments">
+            <h3>Commenti</h3>
+            {% include 'AitamOpportunitaBundle:CommentiOpportunita:commentiOpportunita.html.twig' with { 'commenti': commenti } %}
+                    <h3>Aggiungi un commento</h3>
+            {% render 'AitamOpportunitaBundle:CommentiOpportunita:new'  with { 'opportunita_id' : opportunita.id } %}
+        </section>
+    </section>
+            </div>
+        </div>
+            <div class="right_block">
+               {% block sidebar %}
+                   {{ parent() }}
+               {% endblock %}     
+            </div>
+			<div class="wide_content">
+            	<h2>Terms  Conditions</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+ nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, 
+ consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
+ labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+ ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>            
+            </div> 
+            
+   
+        
+        <div class="clear"></div>
+        </div>
+        {% endblock %}

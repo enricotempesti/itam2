@@ -18,10 +18,14 @@ class PageController extends Controller
                 
                 $davisitare = $em->getRepository('AitamDavisitareBundle:Davisitare')
     		->getBlogDavisitare($limit = 3);
+                
+                $Opportunita = $em->getRepository('AitamOpportunitaBundle:Opportunita')
+    		->getBlogOpportunita($limit = 3);
     	
     		return $this->render('AitamIndexBundle:Page:index.html.twig', array(
     				'dinuovo' => $dinuovo,
-                                'davisitare' => $davisitare
+                                'davisitare' => $davisitare,
+                                'Opportunita' => $Opportunita
     		));
     	   
     }
