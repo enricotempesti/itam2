@@ -1,7 +1,7 @@
  
         
-AitamOpportunitaBundle_Opportunita_show:
-    pattern:  /Opportunita/{id}/{slug}
+AitamOpportunitaBundle_opportunita_show:
+    pattern:  /opportunita/{id}/{slug}
     defaults: { _controller: AitamOpportunitaBundle:Opportunita:Opportunita }
     requirements:
         _method:  GET

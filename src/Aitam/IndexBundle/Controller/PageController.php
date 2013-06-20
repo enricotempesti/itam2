@@ -5,6 +5,8 @@ namespace Aitam\IndexBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Aitam\IndexBundle\Entity\Enquiry;
 use Aitam\IndexBundle\Form\EnquiryType;
+use Aitam\DavisitareBundle\Entity\Commentidavisitare;
+use Aitam\OpportunitaBundle\Entity\CommentiOpportunita;
 
 class PageController extends Controller
 {
@@ -94,11 +96,21 @@ class PageController extends Controller
     
     	$commentLimit   = $this->container
     	->getParameter('aitam_dinuovo.commenti.latest_comment_limit');
+        
     	$latestCommenti = $em->getRepository('AitamIndexBundle:Commenti')
     	->getLatestCommenti($commentLimit);
+        
+        $latestCommentidavisitare = $em->getRepository('AitamDavisitareBundle:Commentidavisitare')
+    	->getLatestCommentiDavisitare($commentLimit);
+        
+        $latestCommentiopportunita = $em->getRepository('AitamOpportunitaBundle:Commentiopportunita')
+    	->getLatestCommentiOpportunita($commentLimit);
     
     	return $this->render('AitamIndexBundle:Page:sidebar.html.twig', array(
     			'latestCommenti'    => $latestCommenti,
+                        'latestCommentidavisitare'    => $latestCommentidavisitare,
+                        'latestCommentiopportunita'    => $latestCommentiopportunita,
+                        
     	));
     }
     

@@ -1,6 +1,7 @@
 <section class="sidebar">
     <header>
         <h3>Tutti gli ultimi commenti</h3></br>
+        <h3>Di nuovo</h3>
     </header>
     {% for commenti in latestCommenti %}
         <article class="comment">
@@ -19,5 +20,42 @@
     {% else %}
         <p>There are no recent comments</p>
     {% endfor %}
+        <h3>Da visitare</h3>
+            {% for commentidavisitare in latestCommentidavisitare %}
+        <article class="comment">
+            <header>
+                <p class="small"><span class="highlight">{{ commentidavisitare.utente }}</span> commentato su </br>
+                    <a href="{{ path('AitamDavisitareBundle_davisitare_show', { 'id': commentidavisitare.articolo.id,
+                                'slug': commentidavisitare.articolo.slug  }) }}-{{ commentidavisitare.id }}">
+                        {{ commentidavisitare.articolo.title }}
+                    </a></br>
+                      <em><time datetime="{{ commentidavisitare.created|date('c') }}">{{ commentidavisitare.created|created_ago }}</time></em>
+                </p>
+            </header>
+            <p>{{ commentidavisitare.commenti(100) }}</p>
+            </p>
+        </article>
+    {% else %}
+        <p>There are no recent comments</p>
+    {% endfor %}
+                <h3>Opportunita</h3>
+            {% for commentiopportunita in latestCommentiopportunita %}
+        <article class="comment">
+            <header>
+                <p class="small"><span class="highlight">{{ commentiopportunita.utente }}</span> commentato su </br>
+                    <a href="{{ path('AitamOpportunitaBundle_opportunita_show', { 'id': commentiopportunita.articolo.id,
+                                'slug': commentiopportunita.articolo.slug  }) }}-{{ commentiopportunita.id }}">
+                        {{ commentiopportunita.articolo.title }}
+                    </a></br>
+                      <em><time datetime="{{ commentiopportunita.created|date('c') }}">{{ commentiopportunita.created|created_ago }}</time></em>
+                </p>
+            </header>
+            <p>{{ commentiopportunita.commenti(100) }}</p>
+            </p>
+        </article>
+    {% else %}
+        <p>There are no recent comments</p>
+    {% endfor %}
+        
 </section>
 
