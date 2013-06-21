@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: @AitamIndexBundle/Resources/config/config.yml }
+    - { resource: @AitamIndexBundle/Resources/config/services.yml }
     - { resource: @AitamAgendaBundle/Resources/config/services.yml }
     - { resource: @AitamAgendaBundle/Resources/config/config.yml }
 
@@ -41,7 +42,6 @@ doctrine:
                     SonataUserBundle: ~
                     ApplicationSonataUserBundle: ~
                     AitamIndexBundle: ~
-                    EnricoBlogBundle: ~
                     AitamAgendaBundle: ~
                     AitamDavisitareBundle: ~
                     AitamOpportunitaBundle: ~

@@ -1,5 +1,5 @@
 <?php
-namespace Enrico\BlogBundle\Twig\Extensions;
+namespace Aitam\IndexBundle\Twig\Extensions;
 
 class EnricoBlogExtension extends \Twig_Extension
 {

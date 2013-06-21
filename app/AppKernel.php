@@ -30,7 +30,6 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new Aitam\IndexBundle\AitamIndexBundle(),
-            new Enrico\BlogBundle\EnricoBlogBundle(),
             new Aitam\AgendaBundle\AitamAgendaBundle(),
             new Aitam\DavisitareBundle\AitamDavisitareBundle(),
             new Aitam\OpportunitaBundle\AitamOpportunitaBundle(),

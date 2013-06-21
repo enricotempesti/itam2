@@ -50,9 +50,7 @@ AitamIndexBundle_homepage:
     defaults: { _controller: AitamIndexBundle:Page:index }
     requirements:
         _method:  GET
-EnricoBlogBundle:
-    resource: "@EnricoBlogBundle/Resources/config/routing.yml"
-    prefix:   / 
+
 AitamAgendaBundle:
     resource: "@AitamAgendaBundle/Resources/config/routing.yml"
     prefix:   /
