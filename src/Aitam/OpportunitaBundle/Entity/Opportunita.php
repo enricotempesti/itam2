@@ -293,6 +293,7 @@ class Opportunita {
      * @ORM\prePersist
      */
     public function preUpload() {
+       
         if (null !== $this->file) {
             // do whatever you want to generate a unique name
             $this->image = uniqid() . '.' . $this->file->guessExtension();

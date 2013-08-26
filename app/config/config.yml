@@ -45,6 +45,7 @@ doctrine:
                     AitamAgendaBundle: ~
                     AitamDavisitareBundle: ~
                     AitamOpportunitaBundle: ~
+                    AitamRaccontiBundle: ~
  
 fos_user:
     db_driver:      orm # can be orm or odm
@@ -256,7 +257,14 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: aitam_Opportunita, label: commentiOpportunita }
       arguments: [null, Aitam\OpportunitaBundle\Entity\CommentiOpportunita, AitamOpportunitaBundle:CommentiOpportunitaAdmin]
-      
+     
+    aitam.Racconti.admin.Racconti:
+      class: Aitam\RaccontiBundle\Admin\RaccontiAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: aitam_Racconti, label: Racconti }
+      arguments: [null, Aitam\RaccontiBundle\Entity\Racconti, AitamRaccontiBundle:RaccontiAdmin]
+      calls:
+          - [ setLabelTranslatorStrategy, [ @sonata.admin.label.strategy.underscore ] ]
   #simple_things_entity_audit:
   #  audited_entities:
   #      - Aitam/IndexBundle\Entity\Dinuovo

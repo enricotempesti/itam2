@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new Aitam\AgendaBundle\AitamAgendaBundle(),
             new Aitam\DavisitareBundle\AitamDavisitareBundle(),
             new Aitam\OpportunitaBundle\AitamOpportunitaBundle(),
+            new Aitam\RaccontiBundle\AitamRaccontiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
