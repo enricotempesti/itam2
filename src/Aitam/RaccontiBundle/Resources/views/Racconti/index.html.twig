@@ -20,7 +20,7 @@
                 {{ entities.created|localizeddate() }}</time></div> 
                     
            {#}            <a href="{{ path('racconti_show', { 'id': entities.id }) }}">{{ entities.titolo | upper  }}</a> #}
-                    <img src="{{ asset(['bundles/AitamIndex/racconti/image/', entities.path]|join) }}" class="small"/>
+                    <img src="{{ asset(['bundles/Raccontibundle/immagini/', entities.images1]|join) }}" class="small"/>
                     <div class="snippet">
                         <p>{{ entities.titolo | upper  }} </p>
                         <p>{{ entities.descrizionebreve | title}}.....</p>

@@ -25,8 +25,6 @@ class RaccontiAdmin extends Admin
             ->add('autore')
             ->add('descrizione')
             ->add('descrizionebreve')
-            ->add('created')
-            ->add('updated')
             ->add('isactive')
         ;
     }
@@ -44,14 +42,8 @@ class RaccontiAdmin extends Admin
             ->add('autore')
             ->add('descrizione')
             ->add('descrizionebreve')
-            ->add('created')
-            ->add('updated')
             ->add('isactive')
-            ->add('file1', 'file', array('required' => false))
-            ->add('file2', 'file', array('required' => false)) 
-            ->add('file3', 'file', array('required' => false)) 
-            ->add('file4', 'file', array('required' => false)) 
-            ->add('file5', 'file', array('required' => false))     
+     
         ;
     }
 
@@ -64,18 +56,12 @@ class RaccontiAdmin extends Admin
     {
         $listMapper
 		    
-            ->add('titolo')
+            ->addIdentifier('titolo')
             ->add('autore')
             ->add('descrizione')
             ->add('descrizionebreve')
-            ->add('created')
-            ->add('updated')
             ->add('isactive')
-            ->add('images1', 'string')
-            ->add('images2', 'string') 
-            ->add('images3', 'string') 
-            ->add('images4', 'string') 
-            ->add('images5', 'string')      
+    
         ;
     }
 

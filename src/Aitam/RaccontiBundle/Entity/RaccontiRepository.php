@@ -16,8 +16,7 @@ class RaccontiRepository extends EntityRepository {
     public function getphotoracconti($limit = null) {
 
         $em = $this->getEntityManager();
-        $query = $em->createQuery('SELECT r.id,r.titolo,r.descrizionebreve,r.autore,r.tipo,r.created,fo.path, MIN( fo.id)  
-				FROM AitamIndexBundle:Raccontiphoto fo LEFT JOIN fo.racconti r WHERE r.is_active = 1 GROUP BY r.id ')
+        $query = $em->createQuery('SELECT r FROM AitamRaccontiBundle:Racconti r WHERE r.isactive = 1 ')
                 ->setMaxResults(20);
 
         try {

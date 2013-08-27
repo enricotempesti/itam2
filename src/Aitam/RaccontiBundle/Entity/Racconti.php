@@ -131,7 +131,6 @@ class Racconti {
     protected $images5;
 
     /**
-     * @Assert\NotBlank()
      * @Assert\Image(
      *     minWidth = 100,
      *     maxWidth = 1200,
@@ -149,7 +148,6 @@ class Racconti {
      *     minHeight = 100,
      *     maxHeight = 1200
      * )
-     * @Assert\NotBlank()
      * @Assert\File(maxSize="1000000")
      */
     public $file2;
@@ -161,7 +159,6 @@ class Racconti {
      *     minHeight = 100,
      *     maxHeight = 1200
      * )
-     * @Assert\NotBlank()
      * @Assert\File(maxSize="1000000")
      */
     public $file3;
@@ -173,7 +170,6 @@ class Racconti {
      *     minHeight = 100,
      *     maxHeight = 1200
      * )
-     * @Assert\NotBlank()
      * @Assert\File(maxSize="1000000")
      */
     public $file4;
@@ -185,7 +181,6 @@ class Racconti {
      *     minHeight = 100,
      *     maxHeight = 1200
      * )
-     * @Assert\NotBlank()
      * @Assert\File(maxSize="1000000")
      */
     public $file5;

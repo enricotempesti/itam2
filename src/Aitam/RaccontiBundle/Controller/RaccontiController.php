@@ -27,7 +27,7 @@ class RaccontiController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AitamRaccontiBundle:Racconti')->findAll();
+        $entities = $em->getRepository('AitamRaccontiBundle:Racconti')->getphotoracconti();
 
         return array(
             'entities' => $entities,
