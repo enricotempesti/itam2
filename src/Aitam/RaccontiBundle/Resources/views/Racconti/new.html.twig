@@ -1,16 +1,71 @@
-<h1>Racconti creation</h1>
+{% extends 'AitamIndexBundle::layout.html.twig' %}
+{% block title %}Progetti.Aitam{% endblock%}
+{% block body %}
 
-<form action="{{ path('racconti_create') }}" method="post" {{ form_enctype(form) }}>
+<div class="center_content_pages">
+        
+        <h2>Testimonial</h2>
+        <div class="left_content">            
+            <div class="block_wide">
+       
+        <section class="comments" id="comments">
+        <section class="previous-comments">   
+            
+<h3>Racconti creation</h3>
+
+<form action="{{ path('racconti_create') }}" method="post" {{ form_enctype(form) }} class="contact_c">
     {{ form_widget(form) }}
-    <p>
-        <button type="submit">Create</button>
-    </p>
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <p><input type="submit" value="Invia"> </p>
+                {% else %}
+                </br><h3><p>Per inviare un racconto devi essere registrato :</p></br>
+                <a href="{{ path('fos_user_registration_register') }}"> iscriviti  qui  </h3></a>
+                {% endif %}
 </form>
+
 
 <ul class="record_actions">
     <li>
         <a href="{{ path('racconti') }}">
-            Back to the list
+            </br><h3><p>Ultimi Racconti</h3></br>
         </a>
     </li>
 </ul>
+
+</section>
+</section>
+    </div>        
+            
+            </div>
+        
+        
+        </div>
+        
+        
+            <div class="right_block">
+            	            <div class="right_block">
+               {% block sidebar %}
+                   {{ parent() }}
+               {% endblock %}     
+            </div>
+
+                
+                
+            </div>
+            
+            
+			<div class="wide_content">
+            	<h2>Terms &amp; Conditions</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>            
+            </div> 
+            
+   
+        
+        <div class="clear"></div>
+        </div>
+        {% endblock %}

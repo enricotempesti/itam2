@@ -50,7 +50,7 @@ AitamIndexBundle_comment_create:
 
 AitamIndexBundle_testimonial:
     pattern:  /testimonial
-    defaults: { _controller: AitamIndexBundle:Page:testimonial }
+    defaults: { _controller: AitamRaccontiBundle:Racconti:new }
     requirements:
         _method:  GET  
 

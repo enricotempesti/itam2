@@ -1,51 +1,84 @@
-<h1>Racconti list</h1>
+{% extends 'AitamIndexBundle::layout.html.twig' %}
+{% block title %}Progetti.Aitam{% endblock%}
+{% block body %}
 
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Autore</th>
-            <th>Descrizione</th>
-            <th>Descrizionebreve</th>
-            <th>Tipo</th>
-            <th>Titolo</th>
-            <th>Created</th>
-            <th>Updated</th>
-            <th>Isactive</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td><a href="{{ path('racconti_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.autore }}</td>
-            <td>{{ entity.descrizione }}</td>
-            <td>{{ entity.descrizionebreve }}</td>
-            <td>{{ entity.tipo }}</td>
-            <td>{{ entity.titolo }}</td>
-            <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{% if entity.updated %}{{ entity.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{{ entity.isactive }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('racconti_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('racconti_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
+<div class="center_content_pages">
+        
+        <h2>Testimonial</h2>
+        <div class="left_content">            
+            <div class="block_wide">
+       
+        <section class="comments" id="comments">
+        <section class="previous-comments">   
+            
+<h3>Ultimi Racconti </h3>
+
+    {% for entities in entities %}
+                <article class="dinuovo">
+                
+                    <div class="date2"><time datetime="{{ entities.created|date('c') }}">
+                {{ entities.created|localizeddate() }}</time></div> 
+                    
+           {#}            <a href="{{ path('racconti_show', { 'id': entities.id }) }}">{{ entities.titolo | upper  }}</a> #}
+                    <img src="{{ asset(['bundles/AitamIndex/racconti/image/', entities.path]|join) }}" class="small"/>
+                    <div class="snippet">
+                        <p>{{ entities.titolo | upper  }} </p>
+                        <p>{{ entities.descrizionebreve | title}}.....</p>
+                        
+                        <p class="continue"><a href="{{ path('racconti_show', { 'id': entities.id }) }}">Continua a leggere...</a></p>
+                    </div>
+
+                    <footer class="meta">
+     
+                        <p>Scritto da <span class="highlight">{{ entities.autore }}</span> </p>
+                    </footer>
+                </article>
+    {% else %}
+                <p>non ci sono nuove entrate</p>
     {% endfor %}
-    </tbody>
-</table>
+            </article>
 
-<ul>
+<ul class="record_actions">
     <li>
-        <a href="{{ path('racconti_new') }}">
-            Create a new entry
+        <a href="{{ path('AitamIndexBundle_testimonial') }}">
+            <h3>Inserisci un altro racconto</h3>
         </a>
     </li>
 </ul>
+    </div>        
+            
+            </div>
+        
+        
+        </div>
+        </section>
+        </section>
+        
+        
+            <div class="right_block">
+            	            <div class="right_block">
+               {% block sidebar %}
+                   {{ parent() }}
+               {% endblock %}     
+            </div>
+
+                
+                
+            </div>
+            
+            
+			<div class="wide_content">
+            	<h2>Terms &amp; Conditions</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>            
+            </div> 
+            
+   
+        
+        <div class="clear"></div>
+        </div>
+        {% endblock %}

@@ -1,61 +1,101 @@
-<h1>Racconti</h1>
+{% extends 'AitamIndexBundle::layout.html.twig' %}
+{% block title %}Racconto{% endblock%}
 
-<table class="record_properties">
-    <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ entity.id }}</td>
-        </tr>
-        <tr>
-            <th>Autore</th>
-            <td>{{ entity.autore }}</td>
-        </tr>
-        <tr>
-            <th>Descrizione</th>
-            <td>{{ entity.descrizione }}</td>
-        </tr>
-        <tr>
-            <th>Descrizionebreve</th>
-            <td>{{ entity.descrizionebreve }}</td>
-        </tr>
-        <tr>
-            <th>Tipo</th>
-            <td>{{ entity.tipo }}</td>
-        </tr>
-        <tr>
-            <th>Titolo</th>
-            <td>{{ entity.titolo }}</td>
-        </tr>
-        <tr>
-            <th>Created</th>
-            <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <th>Updated</th>
-            <td>{{ entity.updated|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <th>Isactive</th>
-            <td>{{ entity.isactive }}</td>
-        </tr>
-    </tbody>
-</table>
+
+{% block body %}
+
+<div class="center_content_pages">
+        
+        <h2>Racconto</h2>
+        <div class="left_content">            
+            <div class="block_wide">
+       
+        <section class="comments" id="comments">
+        <section class="previous-comments"> 
+        
+    {#    {{ app.user }}  #}
+     
+ {% if racconti.isactive == false %} 
+ 
+ <h3> questo &egrave il  tuo  articolo ma ancora non &egrave stato pubblicato </br>
+      verr&agrave controllato a breve
+      </h3>  
+ 
+ {% else %}
+ 
+  {#}ok articolo pubblicato #}
+ 
+ {% endif %}
+            
+<h3> {{ racconti.tipo | upper }} : {{ racconti.titolo }} </h3>
+                    <header>
+                        <h2>{{ racconti.descrizionebreve }}.....</h2>
+                    </header>
+    
+                <article class="dinuovo2">
+                    <img src="{{ asset(['bundles/RaccontiBundle/immagini/', racconti.images1]|join) }}" /></article>
+                <article class="dinuovo2">
+                    <img src="{{ asset(['bundles/RaccontiBundle/immagini/', racconti.images2]|join) }}" /></article>
+                <article class="dinuovo2">
+                    <img src="{{ asset(['bundles/RaccontiBundle/immagini/', racconti.images3]|join) }}" /></article>
+                <article class="dinuovo2">
+                    <img src="{{ asset(['bundles/RaccontiBundle/immagini/', racconti.images4]|join) }}" /></article>
+                <article class="dinuovo2">
+                    <img src="{{ asset(['bundles/RaccontiBundle/immagini/', racconti.images5]|join) }}" /></article>
+
+
+                               <footer class="meta">
+                        <p>DESCRIZIONE <span class="highlight">{{ racconti.descrizione }}</span> </p>
+                        <p>Scritto da <span class="highlight">{{ racconti.autore }}</span> </p>
+                    </footer>
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('racconti') }}">
-            Back to the list
+        <a href="{{ path('AitamIndexBundle_testimonial') }}">
+            <h3>Inserisci un altro racconto</h3>
         </a>
-    </li>
-    <li>
-        <a href="{{ path('racconti_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('racconti_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
     </li>
 </ul>
+
+                <a href="{{ path('racconti') }}">
+            <h3>Ultimi racconti</h3>
+        </a>
+    </div>              
+            </div>
+        
+        
+        </div>
+        
+
+        
+        </section>
+        </section>
+        
+        
+            <div class="right_block">
+            	            <div class="right_block">
+               {% block sidebar %}
+                   {{ parent() }}
+               {% endblock %}     
+            </div>
+
+                
+                
+            </div>
+            
+            
+			<div class="wide_content">
+            	<h2>Terms &amp; Conditions</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>            
+            </div> 
+            
+   
+        
+        <div class="clear"></div>
+        </div>
+        {% endblock %}

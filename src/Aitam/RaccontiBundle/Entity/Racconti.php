@@ -367,7 +367,7 @@ class Racconti {
         return $this->isactive;
     }
 
-    public $i ;
+    public $i;
 
     public function getAbsolutePath() {
         for ($i = 1; $i <= 5; ++$i) {
@@ -429,23 +429,6 @@ class Racconti {
         }
     }
 
-    /**
-     * Get image
-     *
-     * @return string 
-     */
-    public function getImages() {
-        return $this->images;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     */
-    public function setImages($images) {
-        $this->images = $images;
-    }
 
     /**
      * Set images1
@@ -550,6 +533,14 @@ class Racconti {
      */
     public function getImages5() {
         return $this->images5;
+    }
+
+    public static function getTypes() {
+        return array('testimonial' => 'Testimonial', 'viaggio' => 'Viaggio', 'racconto' => 'Racconto');
+    }
+
+    public static function getTypeValues() {
+        return array_keys(self::getTypes());
     }
 
 }

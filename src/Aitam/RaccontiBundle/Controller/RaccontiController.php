@@ -42,18 +42,17 @@ class RaccontiController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AitamRaccontiBundle:Racconti')->find($id);
+        $racconti = $this->getDoctrine()->getRepository('AitamRaccontiBundle:Racconti')->find($id);
 
-        if (!$entity) {
+        if (!$racconti) {
             throw $this->createNotFoundException('Unable to find Racconti entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'racconti'      => $racconti,
             'delete_form' => $deleteForm->createView(),
         );
     }
