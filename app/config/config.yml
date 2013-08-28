@@ -46,6 +46,13 @@ doctrine:
                     AitamDavisitareBundle: ~
                     AitamOpportunitaBundle: ~
                     AitamRaccontiBundle: ~
+                    
+stof_doctrine_extensions:
+    default_locale: en_US
+
+    orm:
+        default: 
+          timestampable : true                    
  
 fos_user:
     db_driver:      orm # can be orm or odm

@@ -131,7 +131,6 @@ class Racconti {
     protected $images5;
 
     /**
-     * @Assert\NotBlank()
      * @Assert\Image(
      *     minWidth = 100,
      *     maxWidth = 1200,
@@ -149,7 +148,6 @@ class Racconti {
      *     minHeight = 100,
      *     maxHeight = 1200
      * )
-     * @Assert\NotBlank()
      * @Assert\File(maxSize="1000000")
      */
     public $file2;
@@ -161,7 +159,6 @@ class Racconti {
      *     minHeight = 100,
      *     maxHeight = 1200
      * )
-     * @Assert\NotBlank()
      * @Assert\File(maxSize="1000000")
      */
     public $file3;
@@ -173,7 +170,6 @@ class Racconti {
      *     minHeight = 100,
      *     maxHeight = 1200
      * )
-     * @Assert\NotBlank()
      * @Assert\File(maxSize="1000000")
      */
     public $file4;
@@ -185,7 +181,6 @@ class Racconti {
      *     minHeight = 100,
      *     maxHeight = 1200
      * )
-     * @Assert\NotBlank()
      * @Assert\File(maxSize="1000000")
      */
     public $file5;
@@ -304,47 +299,21 @@ class Racconti {
         return $this->titolo;
     }
 
-    /**
-     * Set created
-     *
-     * @param \DateTime $created
-     * @return Racconti
-     */
-    public function setCreated($created) {
-        $this->created = $created;
+	public function getCreated() {
+		return $this->created;
+	}
 
-        return $this;
-    }
+	public function setCreated(datetime $created) {
+		$this->created = $created;
+	}
 
-    /**
-     * Get created
-     *
-     * @return \DateTime 
-     */
-    public function getCreated() {
-        return $this->created;
-    }
+	public function getUpdated() {
+		return $this->updated;
+	}
 
-    /**
-     * Set updated
-     *
-     * @param \DateTime $updated
-     * @return Racconti
-     */
-    public function setUpdated($updated) {
-        $this->updated = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Get updated
-     *
-     * @return \DateTime 
-     */
-    public function getUpdated() {
-        return $this->updated;
-    }
+	public function setUpdated(datetime $updated) {
+		$this->updated = $updated;
+	}
 
     /**
      * Set isactive
@@ -367,12 +336,18 @@ class Racconti {
         return $this->isactive;
     }
 
+    public $i;
+
     public function getAbsolutePath() {
-        return null === $this->images ? null : $this->getUploadRootDir() . '/' . $this->images;
+        for ($i = 1; $i <= 5; ++$i) {
+            return null === $this->{'images' . $i} ? null : $this->getUploadRootDir() . '/' . $this->{'images' . $i};
+        }
     }
 
     public function getWebPath() {
-        return null === $this->images ? null : $this->getUploadDir() . '/' . $this->images;
+        for ($i = 1; $i <= 5; ++$i) {
+            return null === $this->{'images'} . $i ? null : $this->getUploadDir() . '/' . $this->{'images'} . $i;
+        }
     }
 
     protected function getUploadRootDir() {
@@ -389,30 +364,11 @@ class Racconti {
      * @ORM\prePersist
      */
     public function preUpload() {
-
-        if (null !== $this->file1) {
-            // do whatever you want to generate a unique name
-            $this->images1 = uniqid() . '.' . $this->file1->guessExtension();
-        }
-
-        if (null !== $this->file2) {
-            // do whatever you want to generate a unique name
-            $this->images2 = uniqid() . '.' . $this->file2->guessExtension();
-        }
-
-        if (null !== $this->file3) {
-            // do whatever you want to generate a unique name
-            $this->images3 = uniqid() . '.' . $this->file3->guessExtension();
-        }
-
-        if (null !== $this->file4) {
-            // do whatever you want to generate a unique name
-            $this->images4 = uniqid() . '.' . $this->file4->guessExtension();
-        }
-
-        if (null !== $this->file5) {
-            // do whatever you want to generate a unique name
-            $this->images5 = uniqid() . '.' . $this->file5->guessExtension();
+        for ($i = 1; $i <= 5; ++$i) {
+            if (null !== '$file' . $i) {
+                // do whatever you want to generate a unique name
+                $this->{'images' . $i} = uniqid() . '.' . $this->{'file' . $i}->guessExtension();
+            }
         }
     }
 
@@ -420,35 +376,13 @@ class Racconti {
      * @ORM\postPersist
      */
     public function upload() {
-        if (null === $this->images1) {
-            return;
+        for ($i = 1; $i <= 5; ++$i) {
+            if (null === $this->{'images' . $i}) {
+                return;
+            }
+            $this->{'file' . $i}->move($this->getUploadRootDir(), $this->{'images' . $i});
+            ((unset) $this->{'file' . $i});
         }
-        $this->file1->move($this->getUploadRootDir(), $this->images1);
-        unset($this->images1);
-
-        if (null === $this->images2) {
-            return;
-        }
-        $this->file2->move($this->getUploadRootDir(), $this->images2);
-        unset($this->images2);
-
-        if (null === $this->images3) {
-            return;
-        }
-        $this->file3->move($this->getUploadRootDir(), $this->images3);
-        unset($this->images3);
-
-        if (null === $this->images4) {
-            return;
-        }
-        $this->file4->move($this->getUploadRootDir(), $this->images4);
-        unset($this->images4);
-
-        if (null === $this->images5) {
-            return;
-        }
-        $this->file5->move($this->getUploadRootDir(), $this->images5);
-        unset($this->images5);
     }
 
     /**
@@ -456,44 +390,14 @@ class Racconti {
      */
     public function removeUpload() {
 
-        if ($this->images1 = $this->getAbsolutePath()) {
-            unlink($this->images1);
-        }
-
-        if ($this->images2 = $this->getAbsolutePath()) {
-            unlink($this->images2);
-        }
-        
-                if ($this->images3 = $this->getAbsolutePath()) {
-            unlink($this->images4);
-        }
-        
-                if ($this->images4 = $this->getAbsolutePath()) {
-            unlink($this->images4);
-        }
-        
-                if ($this->images5 = $this->getAbsolutePath()) {
-            unlink($this->images5);
+        for ($i = 1; $i <= 5; ++$i) {
+            if
+            ($this->{'images' . $i} = $this->getUploadRootDir() . '/' . $this->{'images' . $i}) {
+                unlink($this->{'images' . $i});
+            }
         }
     }
 
-    /**
-     * Get image
-     *
-     * @return string 
-     */
-    public function getImages() {
-        return $this->images;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     */
-    public function setImages($images) {
-        $this->images = $images;
-    }
 
     /**
      * Set images1
@@ -514,6 +418,98 @@ class Racconti {
      */
     public function getImages1() {
         return $this->images1;
+    }
+
+    /**
+     * Set images2
+     *
+     * @param string $images2
+     * @return Racconti
+     */
+    public function setImages2($images2) {
+        $this->images2 = $images2;
+
+        return $this;
+    }
+
+    /**
+     * Get images2
+     *
+     * @return string 
+     */
+    public function getImages2() {
+        return $this->images2;
+    }
+
+    /**
+     * Set images3
+     *
+     * @param string $images3
+     * @return Racconti
+     */
+    public function setImages3($images3) {
+        $this->images3 = $images3;
+
+        return $this;
+    }
+
+    /**
+     * Get images3
+     *
+     * @return string 
+     */
+    public function getImages3() {
+        return $this->images3;
+    }
+
+    /**
+     * Set images4
+     *
+     * @param string $images4
+     * @return Racconti
+     */
+    public function setImages4($images4) {
+        $this->images4 = $images4;
+
+        return $this;
+    }
+
+    /**
+     * Get images4
+     *
+     * @return string 
+     */
+    public function getImages4() {
+        return $this->images4;
+    }
+
+    /**
+     * Set images5
+     *
+     * @param string $images5
+     * @return Racconti
+     */
+    public function setImages5($images5) {
+        $this->images5 = $images5;
+
+        return $this;
+    }
+
+    /**
+     * Get images5
+     *
+     * @return string 
+     */
+    public function getImages5() {
+        return $this->images5;
+    }
+
+    public static function getTypes() {
+        return array('testimonial' => 'Testimonial', 'viaggio' => 'Viaggio', 'racconto' => 'Racconto');
+    }
+
+    public static function getTypeValues() {
+        return array_keys(self::getTypes());
     }
 
 }

@@ -15,9 +15,16 @@ class RaccontiRepository extends EntityRepository {
 
     public function getphotoracconti($limit = null) {
 
-        $em = $this->getEntityManager();
-        $query = $em->createQuery('SELECT r FROM AitamRaccontiBundle:Racconti r WHERE r.isactive = 1 ')
-                ->setMaxResults(20);
+                $qb = $this->createQueryBuilder('r')
+                ->select('r')
+                ->where('r.isactive = 1')
+                ->addOrderBy('r.created', 'DESC');
+
+        if (false === is_null($limit))
+            $qb->setMaxResults($limit);
+
+        return $qb->getQuery()
+                        ->getResult();
 
         try {
             return $query->getResult();

@@ -299,47 +299,21 @@ class Racconti {
         return $this->titolo;
     }
 
-    /**
-     * Set created
-     *
-     * @param \DateTime $created
-     * @return Racconti
-     */
-    public function setCreated($created) {
-        $this->created = $created;
+	public function getCreated() {
+		return $this->created;
+	}
 
-        return $this;
-    }
+	public function setCreated(datetime $created) {
+		$this->created = $created;
+	}
 
-    /**
-     * Get created
-     *
-     * @return \DateTime 
-     */
-    public function getCreated() {
-        return $this->created;
-    }
+	public function getUpdated() {
+		return $this->updated;
+	}
 
-    /**
-     * Set updated
-     *
-     * @param \DateTime $updated
-     * @return Racconti
-     */
-    public function setUpdated($updated) {
-        $this->updated = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Get updated
-     *
-     * @return \DateTime 
-     */
-    public function getUpdated() {
-        return $this->updated;
-    }
+	public function setUpdated(datetime $updated) {
+		$this->updated = $updated;
+	}
 
     /**
      * Set isactive
