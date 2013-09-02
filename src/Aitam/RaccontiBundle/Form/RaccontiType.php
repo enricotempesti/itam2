@@ -53,6 +53,9 @@ class RaccontiType extends AbstractType {
                         'accept' => 'image/*',
                     )
                 ))
+                
+                ->add('inserisciurl1','url',array('required' => false,'label' => 'inserisci-url vimeo,youtube'))
+                ->add('inserisciurl2','url',array('required' => false,'label' => 'inserisci-url vimeo,youtube'))
         ;
     }
 

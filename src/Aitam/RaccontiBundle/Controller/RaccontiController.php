@@ -15,16 +15,15 @@ use Aitam\RaccontiBundle\Form\RaccontiType;
  *
  * @Route("/racconti")
  */
-class RaccontiController extends Controller
-{
+class RaccontiController extends Controller {
+
     /**
      * Lists all Racconti entities.
      *
      * @Route("/", name="racconti")
      * @Template()
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AitamRaccontiBundle:Racconti')->getphotoracconti();
@@ -40,8 +39,7 @@ class RaccontiController extends Controller
      * @Route("/{id}/show", name="racconti_show")
      * @Template()
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
 
         $racconti = $this->getDoctrine()->getRepository('AitamRaccontiBundle:Racconti')->find($id);
 
@@ -52,7 +50,7 @@ class RaccontiController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'racconti'      => $racconti,
+            'racconti' => $racconti,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -63,16 +61,15 @@ class RaccontiController extends Controller
      * @Route("/new", name="racconti_new")
      * @Template()
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new Racconti();
-        
-        $form   = $this->createForm(new RaccontiType(), $entity);
-        
+
+        $form = $this->createForm(new RaccontiType(), $entity);
+
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -83,28 +80,54 @@ class RaccontiController extends Controller
      * @Method("POST")
      * @Template("AitamRaccontiBundle:Racconti:new.html.twig")
      */
-    public function createAction(Request $request)
-    {
-        $entity  = new Racconti();
-        
+    public function createAction(Request $request) {
+        $entity = new Racconti();
+
         $form = $this->createForm(new RaccontiType(), $entity);
 
         $form->bind($request);
-        
-        //var_dump($entity);
-       // die;
-        
+
+        $url1 = $entity->getInserisciurl1();
+        $url2 = $entity->getInserisciurl2();
+
+
+        $cal = $this->get("ElaborazioneUrl");
+
+        $nonconnessione = $cal->is_online();
+
+        if ($nonconnessione == true) {
+        }else{
+                        return array(
+                'entity' => $entity,
+                'nonconnessione' => $nonconnessione,
+                'form' => $form->createView()
+            );
+        }
+
+        $cal->ElaUrl($url1, $url2);
+        $embedvideo1 = $cal->embedvideo1;
+        $embedvideo2 = $cal->embedvideo2;
+        $imgvideo1 = $cal->imgvideo1;
+        $imgvideo2 = $cal->imgvideo2;
+        $entity->setEmbedvideo1($embedvideo1);
+        $entity->setEmbedvideo2($embedvideo2);
+        $entity->setImgvideo1($imgvideo1);
+        $entity->setImgvideo2($imgvideo2);
+
+
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+
 
             return $this->redirect($this->generateUrl('racconti_show', array('id' => $entity->getId())));
         }
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -114,8 +137,7 @@ class RaccontiController extends Controller
      * @Route("/{id}/edit", name="racconti_edit")
      * @Template()
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AitamRaccontiBundle:Racconti')->find($id);
@@ -128,8 +150,8 @@ class RaccontiController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -141,8 +163,7 @@ class RaccontiController extends Controller
      * @Method("POST")
      * @Template("AitamRaccontiBundle:Racconti:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AitamRaccontiBundle:Racconti')->find($id);
@@ -163,8 +184,8 @@ class RaccontiController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -175,8 +196,7 @@ class RaccontiController extends Controller
      * @Route("/{id}/delete", name="racconti_delete")
      * @Method("POST")
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
@@ -195,11 +215,11 @@ class RaccontiController extends Controller
         return $this->redirect($this->generateUrl('racconti'));
     }
 
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
+                        ->add('id', 'hidden')
+                        ->getForm()
         ;
     }
+
 }

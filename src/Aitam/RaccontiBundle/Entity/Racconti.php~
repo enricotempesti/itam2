@@ -23,6 +23,42 @@ class Racconti {
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
+    
+    /**
+     * @Assert\Url()
+     * @var string 
+     */
+    protected $inserisciurl1;
+    
+    /**
+     * @Assert\Url()
+     * @var string 
+     */
+    protected $inserisciurl2;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="imgvideo1", type="string",length=70, nullable=true)
+     */
+    protected $imgvideo1;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="imgvideo2", type="string",length=70, nullable=true)
+     */
+    protected $imgvideo2;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="embedvideo1", type="string",length=30, nullable=true)
+     */
+    protected $embedvideo1;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="embedvideo2", type="string",length=30, nullable=true)
+     */
+    protected $embedvideo2;
 
     /**
      * @Assert\Length(

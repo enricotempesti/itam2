@@ -23,6 +23,42 @@ class Racconti {
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
+    
+    /**
+     * @Assert\Url()
+     * @var string
+     */
+    protected $inserisciurl1;
+    
+    /**
+     * @Assert\Url()
+     * @var string 
+     */
+    protected $inserisciurl2;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="imgvideo1", type="string",length=70, nullable=true)
+     */
+    protected $imgvideo1;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="imgvideo2", type="string",length=70, nullable=true)
+     */
+    protected $imgvideo2;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="embedvideo1", type="string",length=30, nullable=true)
+     */
+    protected $embedvideo1;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="embedvideo2", type="string",length=30, nullable=true)
+     */
+    protected $embedvideo2;
 
     /**
      * @Assert\Length(
@@ -511,5 +547,114 @@ class Racconti {
     public static function getTypeValues() {
         return array_keys(self::getTypes());
     }
+    
+    public function getInserisciurl1() {
+        return $this->inserisciurl1;
+    }
 
+    public function setInserisciurl1($inserisciurl1) {
+        $this->inserisciurl1 = $inserisciurl1;
+    }
+
+    public function getInserisciurl2() {
+        return $this->inserisciurl2;
+    }
+
+    public function setInserisciurl2($inserisciurl2) {
+        $this->inserisciurl2 = $inserisciurl2;
+    }
+
+    
+
+    /**
+     * Set imgvideo1
+     *
+     * @param string $imgvideo1
+     * @return Racconti
+     */
+    public function setImgvideo1($imgvideo1)
+    {
+        $this->imgvideo1 = $imgvideo1;
+    
+        return $this;
+    }
+
+    /**
+     * Get imgvideo1
+     *
+     * @return string 
+     */
+    public function getImgvideo1()
+    {
+        return $this->imgvideo1;
+    }
+
+    /**
+     * Set imgvideo2
+     *
+     * @param string $imgvideo2
+     * @return Racconti
+     */
+    public function setImgvideo2($imgvideo2)
+    {
+        $this->imgvideo2 = $imgvideo2;
+    
+        return $this;
+    }
+
+    /**
+     * Get imgvideo2
+     *
+     * @return string 
+     */
+    public function getImgvideo2()
+    {
+        return $this->imgvideo2;
+    }
+
+    /**
+     * Set embedvideo1
+     *
+     * @param string $embedvideo1
+     * @return Racconti
+     */
+    public function setEmbedvideo1($embedvideo1)
+    {
+        $this->embedvideo1 = $embedvideo1;
+    
+        return $this;
+    }
+
+    /**
+     * Get embedvideo1
+     *
+     * @return string 
+     */
+    public function getEmbedvideo1()
+    {
+        return $this->embedvideo1;
+    }
+
+    /**
+     * Set embedvideo2
+     *
+     * @param string $embedvideo2
+     * @return Racconti
+     */
+    public function setEmbedvideo2($embedvideo2)
+    {
+        $this->embedvideo2 = $embedvideo2;
+    
+        return $this;
+    }
+
+    /**
+     * Get embedvideo2
+     *
+     * @return string 
+     */
+    public function getEmbedvideo2()
+    {
+        return $this->embedvideo2;
+    }
 }

@@ -5,6 +5,7 @@ imports:
     - { resource: @AitamIndexBundle/Resources/config/services.yml }
     - { resource: @AitamAgendaBundle/Resources/config/services.yml }
     - { resource: @AitamAgendaBundle/Resources/config/config.yml }
+    - { resource: @AitamRaccontiBundle/Resources/config/service.yml }
 
 framework:
     secret:          "%secret%"

@@ -60,13 +60,25 @@
                 <a href="{{ path('racconti') }}">
             <h3>Ultimi racconti</h3>
         </a>
-    </div>              
-            </div>
-        
-        
-        </div>
-        
 
+    </div>   
+                <div class="video ">     
+                        <h2>I tuoi video </h2>                        
+                        
+                        {% if racconti.embedvideo1 | length == 11 %}
+                        <iframe src="http://www.youtube.com/embed/{{racconti.embedvideo1}}"  frameborder="0" allowfullscreen></iframe>
+                        {% else %}
+                        <iframe src="http://player.vimeo.com/video/{{racconti.embedvideo1}}?byline=0&amp;portrait=0"></iframe>
+                        {% endif %}
+                
+                        {% if racconti.embedvideo2 | length == 11 %}
+                        <iframe src="http://www.youtube.com/embed/{{racconti.embedvideo2}}" frameborder="0" allowfullscreen>></iframe>
+                        {% else %}
+                        <iframe src="http://player.vimeo.com/video/{{racconti.embedvideo2}}?byline=0&amp;portrait=0"></iframe>
+                        {% endif %}
+                </div>
+        </div>
+</div>
         
         </section>
         </section>
@@ -97,5 +109,5 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
    
         
         <div class="clear"></div>
-        </div>
+       
         {% endblock %}

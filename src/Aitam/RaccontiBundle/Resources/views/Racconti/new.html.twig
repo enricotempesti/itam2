@@ -14,6 +14,9 @@
 <h3>Racconti creation</h3>
 
 <form action="{{ path('racconti_create') }}" method="post" {{ form_enctype(form) }} class="contact_c">
+    
+ {% if nonconnessione is defined %}  <h2>{{  nonconnessione | upper   }}</h2>
+ {% endif %}
     {{ form_widget(form) }}
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <p><input type="submit" value="Invia"> </p>
