@@ -23,37 +23,37 @@ class Racconti {
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
-    
+
     /**
      * @Assert\Url()
      * @var string
      */
     protected $inserisciurl1;
-    
+
     /**
      * @Assert\Url()
      * @var string 
      */
     protected $inserisciurl2;
-    
+
     /**
      * @var string
      * @ORM\Column(name="imgvideo1", type="string",length=70, nullable=true)
      */
     protected $imgvideo1;
-    
+
     /**
      * @var string
      * @ORM\Column(name="imgvideo2", type="string",length=70, nullable=true)
      */
     protected $imgvideo2;
-    
+
     /**
      * @var string
      * @ORM\Column(name="embedvideo1", type="string",length=30, nullable=true)
      */
     protected $embedvideo1;
-    
+
     /**
      * @var string
      * @ORM\Column(name="embedvideo2", type="string",length=30, nullable=true)
@@ -335,21 +335,21 @@ class Racconti {
         return $this->titolo;
     }
 
-	public function getCreated() {
-		return $this->created;
-	}
+    public function getCreated() {
+        return $this->created;
+    }
 
-	public function setCreated(datetime $created) {
-		$this->created = $created;
-	}
+    public function setCreated(datetime $created) {
+        $this->created = $created;
+    }
 
-	public function getUpdated() {
-		return $this->updated;
-	}
+    public function getUpdated() {
+        return $this->updated;
+    }
 
-	public function setUpdated(datetime $updated) {
-		$this->updated = $updated;
-	}
+    public function setUpdated(datetime $updated) {
+        $this->updated = $updated;
+    }
 
     /**
      * Set isactive
@@ -401,7 +401,7 @@ class Racconti {
      */
     public function preUpload() {
         for ($i = 1; $i <= 5; ++$i) {
-            if (null !== '$file' . $i) {
+            if (null !== $this->{'file' . $i}) {
                 // do whatever you want to generate a unique name
                 $this->{'images' . $i} = uniqid() . '.' . $this->{'file' . $i}->guessExtension();
             }
@@ -413,11 +413,10 @@ class Racconti {
      */
     public function upload() {
         for ($i = 1; $i <= 5; ++$i) {
-            if (null === $this->{'images' . $i}) {
-                return;
+            if (null !== $this->{'file' . $i}) {
+                $this->{'file' . $i}->move($this->getUploadRootDir(), $this->{'images' . $i});
+                ((unset) $this->{'file' . $i});
             }
-            $this->{'file' . $i}->move($this->getUploadRootDir(), $this->{'images' . $i});
-            ((unset) $this->{'file' . $i});
         }
     }
 
@@ -433,7 +432,6 @@ class Racconti {
             }
         }
     }
-
 
     /**
      * Set images1
@@ -547,7 +545,7 @@ class Racconti {
     public static function getTypeValues() {
         return array_keys(self::getTypes());
     }
-    
+
     public function getInserisciurl1() {
         return $this->inserisciurl1;
     }
@@ -564,18 +562,15 @@ class Racconti {
         $this->inserisciurl2 = $inserisciurl2;
     }
 
-    
-
     /**
      * Set imgvideo1
      *
      * @param string $imgvideo1
      * @return Racconti
      */
-    public function setImgvideo1($imgvideo1)
-    {
+    public function setImgvideo1($imgvideo1) {
         $this->imgvideo1 = $imgvideo1;
-    
+
         return $this;
     }
 
@@ -584,8 +579,7 @@ class Racconti {
      *
      * @return string 
      */
-    public function getImgvideo1()
-    {
+    public function getImgvideo1() {
         return $this->imgvideo1;
     }
 
@@ -595,10 +589,9 @@ class Racconti {
      * @param string $imgvideo2
      * @return Racconti
      */
-    public function setImgvideo2($imgvideo2)
-    {
+    public function setImgvideo2($imgvideo2) {
         $this->imgvideo2 = $imgvideo2;
-    
+
         return $this;
     }
 
@@ -607,8 +600,7 @@ class Racconti {
      *
      * @return string 
      */
-    public function getImgvideo2()
-    {
+    public function getImgvideo2() {
         return $this->imgvideo2;
     }
 
@@ -618,10 +610,9 @@ class Racconti {
      * @param string $embedvideo1
      * @return Racconti
      */
-    public function setEmbedvideo1($embedvideo1)
-    {
+    public function setEmbedvideo1($embedvideo1) {
         $this->embedvideo1 = $embedvideo1;
-    
+
         return $this;
     }
 
@@ -630,8 +621,7 @@ class Racconti {
      *
      * @return string 
      */
-    public function getEmbedvideo1()
-    {
+    public function getEmbedvideo1() {
         return $this->embedvideo1;
     }
 
@@ -641,10 +631,9 @@ class Racconti {
      * @param string $embedvideo2
      * @return Racconti
      */
-    public function setEmbedvideo2($embedvideo2)
-    {
+    public function setEmbedvideo2($embedvideo2) {
         $this->embedvideo2 = $embedvideo2;
-    
+
         return $this;
     }
 
@@ -653,8 +642,8 @@ class Racconti {
      *
      * @return string 
      */
-    public function getEmbedvideo2()
-    {
+    public function getEmbedvideo2() {
         return $this->embedvideo2;
     }
+
 }
