@@ -34,7 +34,7 @@ return array(
     'JMS\\DiExtraBundle' => array($vendorDir . '/jms/di-extra-bundle'),
     'JMS\\AopBundle' => array($vendorDir . '/jms/aop-bundle'),
     'Google\\Authenticator' => array($vendorDir . '/sonata-project/google-authenticator/lib'),
-    'Gedmo' => array($vendorDir . '/gedmo/doctrine-extensions/lib'),
+    'Gedmo\\' => array($vendorDir . '/gedmo/doctrine-extensions/lib'),
     'FOS\\UserBundle' => array($vendorDir . '/friendsofsymfony/user-bundle'),
     'Exporter' => array($vendorDir . '/sonata-project/exporter/lib'),
     'Doctrine\\ORM' => array($vendorDir . '/doctrine/orm/lib'),

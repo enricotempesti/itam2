@@ -39,13 +39,14 @@ class SecurityController extends ContainerAware
         }
         // last username entered by the user
         $lastUsername = (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME);
-
         $csrfToken = $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate');
+       
 
+       
         return $this->renderLogin(array(
             'last_username' => $lastUsername,
             'error'         => $error,
-            'csrf_token' => $csrfToken,
+            'csrf_token' => $csrfToken
         ));
     }
 

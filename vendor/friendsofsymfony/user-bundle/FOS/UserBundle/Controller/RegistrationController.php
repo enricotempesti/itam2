@@ -33,10 +33,66 @@ class RegistrationController extends ContainerAware
         $formHandler = $this->container->get('fos_user.registration.form.handler');
         $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
 
+        $cal = $this->container->get("ServiceLogin");
+        $cal->ServiceFacebook();
+        
+        $loginUrl = $cal->loginUrl;
+        $userface = $cal->user;
+        var_dump($userface);
+        
+           //     $em = $this->getDoctrine()->getEntityManager();
+       
+        $faceid =  $this->container->get('fos_user.user_manager')->findUserByEmail($userface);
+    //    var_dump($faceid);
+        
+        
+        $rr = $this->container->get('security.context')->isGranted('ROLE_USER');
+        var_dump($rr);
+        
+        if ($userface != null and $faceid == false){
+        	
+           $user = $cal->ControlloUser();
+            
+            $route = 'fos_user_registration_confirmed';
+            $this->setFlash('fos_user_success', 'registration.flash.user_created');
+            $url = $this->container->get('router')->generate($route);
+        	
+        	$response = new RedirectResponse($url);
+         	 
+        		$this->authenticateUser($user, $response);
+        	
+        	
+        	return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:confirmed.html.'.$this->getEngine(), array(
+        			'user' => $user,
+        	));
+    
+    }
+
+    if ($userface != null and $faceid ){
+    	
+    	$user = $faceid;
+    	
+    	$route = 'fos_user_registration_confirmed';
+    	$this->setFlash('fos_user_success', 'registration.flash.user_created');
+    	$url = $this->container->get('router')->generate($route);
+    	 
+    	$response = new RedirectResponse($url);
+    	 
+    	$this->authenticateUser($user, $response);
+    	 
+    	 
+    	return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:confirmed.html.'.$this->getEngine(), array(
+    			'user' => $user,
+    	));
+    	
+    }
+    	
+    	
+    	
+    	
         $process = $formHandler->process($confirmationEnabled);
         if ($process) {
             $user = $form->getData();
-
             $authUser = false;
             if ($confirmationEnabled) {
                 $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
@@ -59,6 +115,7 @@ class RegistrationController extends ContainerAware
 
         return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
             'form' => $form->createView(),
+        		'loginUrl'  => $loginUrl
         ));
     }
 

@@ -1,3 +1,6 @@
+login_facebook:
+    pattern:  /facebook_login
+    defaults: { _controller: ApplicationSonataUserBundle:LoginFacebook:LoginFace }
 aitam_racconti:
     resource: "@AitamRaccontiBundle/Controller"
     prefix:   /

@@ -2,7 +2,7 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     itam
+    database_name:     itam2
     database_user:     enrico 
     database_password: tempe08
 
@@ -13,4 +13,4 @@ parameters:
 
     locale:            ita
     secret:            ThisTokenIsNotSoSecretChangeIt
-    sitename:          itam
+    sitename:          itam2
