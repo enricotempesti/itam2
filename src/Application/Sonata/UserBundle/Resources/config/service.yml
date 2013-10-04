@@ -1,0 +1,7 @@
+parameters:
+
+services:            
+    ServiceLogin:
+        class: Application\Sonata\UserBundle\ServiceLogin\ServiceLogin
+        arguments: [@doctrine.orm.entity_manager,@service_container]
+        

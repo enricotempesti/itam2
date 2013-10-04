@@ -35,6 +35,7 @@ class AppKernel extends Kernel
             new Aitam\OpportunitaBundle\AitamOpportunitaBundle(),
             new Aitam\RaccontiBundle\AitamRaccontiBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new HappyR\Google\ApiBundle\HappyRGoogleApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

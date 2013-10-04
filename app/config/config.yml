@@ -64,7 +64,7 @@ fos_user:
             enabled:    true
             from_email:
                 address:        registration@acmedemo.com
-                sender_name:    Nome Sito
+                sender_name:    ItalianOi
     resetting:
         email:
             from_email:
@@ -79,6 +79,14 @@ fos_user:
             type:               fos_user_profile
             name:               fos_user_profile_form
             validation_groups:  [Authentication] # Please note : this is not the default value
+
+happy_r_google_api:
+    application_name: ItalianOi
+    oauth2_client_id: 181868280258
+    oauth2_client_secret: qfJ-mGPs7Ix5hNo_7oacu_Oe
+    oauth2_redirect_uri: http://localhost/itam2/web/app_dev.php/register/
+    developer_key: 181868280258
+    site_name: mysite.com
  
 sonata_block:
     default_contexts: [cms]

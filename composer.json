@@ -32,7 +32,8 @@
         "sonata-project/cache-bundle": "2.1.*@dev",
         "sonata-project/google-authenticator": "1.*",
         "facebook/php-sdk": "3.2.0",
-        "stof/doctrine-extensions-bundle": "~1.1@dev"
+        "stof/doctrine-extensions-bundle": "~1.1@dev",
+        "happyr/google-api-bundle": "1.0.*"
     },
     "scripts": {
         "post-install-cmd": [
@@ -52,4 +53,5 @@
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"
     }
+    
 }

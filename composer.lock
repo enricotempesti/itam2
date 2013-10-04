@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "bee89faf25758e756b2c94117b1de532",
+    "hash": "70ce417c5fe189ef279970ef8ed9fb78",
     "packages": [
         {
             "name": "doctrine/common",
@@ -466,6 +466,53 @@
                 "uploadable"
             ],
             "time": "2013-08-18 07:18:44"
+        },
+        {
+            "name": "happyr/google-api-bundle",
+            "version": "1.0.3",
+            "target-dir": "HappyR/Google/ApiBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/HappyR/GoogleApiBundle.git",
+                "reference": "690e73be527303a9d9bd38af96a9b1599f3b79a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/HappyR/GoogleApiBundle/zipball/690e73be527303a9d9bd38af96a9b1599f3b79a7",
+                "reference": "690e73be527303a9d9bd38af96a9b1599f3b79a7",
+                "shasum": ""
+            },
+            "require": {
+                "nyholm/google-api-php-client": "0.1.*",
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "2.*",
+                "symfony/yaml": "2.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "HappyR\\Google\\ApiBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias@happyrecruiting.se"
+                }
+            ],
+            "description": "A Symfony2 Wrapper for the Google APIs Client Library for PHP",
+            "homepage": "http://developer.happyr.se",
+            "keywords": [
+                "google api"
+            ],
+            "time": "2013-07-07 17:02:51"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1011,6 +1058,49 @@
                 "logging"
             ],
             "time": "2012-08-29 04:53:20"
+        },
+        {
+            "name": "nyholm/google-api-php-client",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nyholm/google-api-php-client.git",
+                "reference": "6b2013123729151adde3bd4364220d9420eee154"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nyholm/google-api-php-client/zipball/6b2013123729151adde3bd4364220d9420eee154",
+                "reference": "6b2013123729151adde3bd4364220d9420eee154",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "GoogleApi": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache 2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "http://www.tnyholm.se/"
+                }
+            ],
+            "description": "Google API library for PHP. This packet is maintained! Version 0.6.2 of the Google Api client.",
+            "homepage": "http://nyholm.github.io/google-api-php-client",
+            "keywords": [
+                "gdata",
+                "google"
+            ],
+            "time": "2013-08-02 05:37:08"
         },
         {
             "name": "sensio/distribution-bundle",
