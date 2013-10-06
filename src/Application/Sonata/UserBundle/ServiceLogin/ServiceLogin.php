@@ -91,7 +91,7 @@ class ServiceLogin {
 
 	}
 
-	public function UserGoogle() {
+	public function ServiceGoogle() {
 
 		$this->googleclient = new Client();
 
@@ -130,7 +130,6 @@ class ServiceLogin {
 	public function ControlloUserGoogle() {
 		
 		$nome = $this->usergoogle['given_name'] ."_google". date('Y-m-d_H:i');
-		var_dump($this->usergoogle);
 		$email = $this->usergoogle['id'];
 		$password = $this->usergoogle['id'];
 		$enabled = true;

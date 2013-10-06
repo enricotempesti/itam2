@@ -36,9 +36,10 @@ class RegistrationController extends ContainerAware {
 		$cal = $this->container->get("ServiceLogin");
 
 		$cal->ServiceFacebook();
-
-		$cal->UserGoogle();
-
+		$loginUrl = $cal->loginUrl;
+if ($loginUrl){
+		$cal->ServiceGoogle();
+}
 		$loginUrlGoogle = $cal->loginUrlGoogle;
 
 		$usergoogle = $cal->usergoogle['id'];
