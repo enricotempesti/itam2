@@ -40,5 +40,33 @@ class DavisitareRepository extends EntityRepository
 		return $qb->getQuery()
 		->getResult();
 	}
+	
+	public function getPagination($offset = 0, $limit = 0) {
+	
+		$qb = $this->createQueryBuilder('d')
+		->addOrderBy('d.created', 'DESC');
+	
+		if ((isset($offset)) && (isset($limit))) {
+			if ($limit > 0) {
+				$qb->setFirstResult($offset);
+				$qb->setMaxResults($limit);
+			}
+		}
+	
+		$q = $qb->getQuery();
+	
+		return $q->getResult();
+	}
+	
+	public function getCount() {
+		//Create query builder for languages table
+		$qb = $this->createQueryBuilder('d');
+		//Add Count expression to query
+		$qb->add('select', $qb->expr()->count('d'));
+		//Get our query
+		$q = $qb->getQuery();
+		//Return number of items
+		return $q->getSingleScalarResult();
+	}
 		
 }

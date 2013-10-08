@@ -7,6 +7,7 @@ use Aitam\IndexBundle\Entity\Enquiry;
 use Aitam\IndexBundle\Form\EnquiryType;
 use Aitam\DavisitareBundle\Entity\Commentidavisitare;
 use Aitam\OpportunitaBundle\Entity\CommentiOpportunita;
+use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends Controller
 {

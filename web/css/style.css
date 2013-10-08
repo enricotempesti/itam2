@@ -318,3 +318,8 @@ padding-left:10px;
 text-decoration:underline;
 color: #2A1C11;
 }
+#obsoleto
+{
+    position: absolute;
+    visibility: hidden;
+}

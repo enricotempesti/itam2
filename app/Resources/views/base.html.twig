@@ -3,7 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{% block title %}Italia.Amazonia.site{% endblock %}</title>
-<!--[if lt IE 9]>
+</br>
+<!--[if lt IE 9]><b>ITALIANOI</b> NON E' OTTIMIZZATO PER QUESTA VERSIONE DI INTERNET EXPLORER 
+<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">AGGIORNA IL BROWSER</a>
+<link rel="stylesheet" type="text/css" href="obsoleto.css">
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 {% block stylesheets %}
@@ -20,12 +23,17 @@
 {% endblock %} 
 </head>
 <body>
+<div id="obsoleto">
+<b>ATTENZIONE!</b> La tua versione di Microsoft Internet Explorer
+è obsoleta e potrebbe compromettere la tua corretta navigazione.
+<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Aggiornala adesso!</a>
+</div>
     <div id="wrap">
     <div class="top_corner"></div>
     <div id="main_container">
     
         <div id="header">
-            <div id="logo"><a href="/aitam/public/app_dev.php">
+            <div id="logo"><a href="/itam2/web/app_dev.php">
 			<img src="{{ asset('bundles/AitamIndex/images/logoitam.JPG') }}" alt="Italia Amazonia" width="338" height="72" border="0" title="italia amazzonia" /></a></div>
             
         {% block navigation %}

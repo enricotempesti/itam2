@@ -8,8 +8,8 @@ AitamOpportunitaBundle_opportunita_show:
         id: \d+
 
 AitamOpportunitaBundle_home_Opportunita:
-    pattern:  /home_Opportunita
-    defaults: { _controller: AitamOpportunitaBundle:Opportunita:home_Opportunita }
+    pattern:  /home_Opportunita/{page}
+    defaults: { _controller: AitamOpportunitaBundle:Opportunita:home_Opportunita,page: 1 }
     requirements:
         _method:  GET 
         

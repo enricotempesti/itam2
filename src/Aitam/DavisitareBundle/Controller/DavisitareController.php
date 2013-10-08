@@ -3,6 +3,7 @@
 namespace Aitam\DavisitareBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aitam\IndexBundle\Helpers\Paginator;
 
 /**
  * Davisitare controller.
@@ -31,16 +32,30 @@ class DavisitareController extends Controller
         ));
     }
     
-    public function home_davisitareAction()
+    public function home_davisitareAction($page)
     {
+    	$blog_per_page = $this->container->getParameter('blog_per_seconda_pagina');
+    	$page_range = $this->container->getParameter('range_pagine');
+    	
+    	$itemsCount = $this->getDoctrine()->getRepository("AitamDavisitareBundle:Davisitare")->getCount();
+    	if (!$itemsCount) {
+    		throw $this->createNotFoundException('Nessun blog � stato trovato per blog' );
+    	}
+    	
+    	$paginator = new Paginator($itemsCount, $page, $blog_per_page, $page_range);
+    	
+    	$offset = ($page - 1) * $blog_per_page;
+    	$limit = $blog_per_page;
+    	
     	$em = $this->getDoctrine()
     	->getEntityManager();
     
     	$davisitare = $em->getRepository('AitamDavisitareBundle:Davisitare')
-    	->getLatestDavisitare();
+    	->getPagination($offset, $limit);
     
     	return $this->render('AitamDavisitareBundle:Davisitare:home_davisitare.html.twig', array(
-    			'davisitare' => $davisitare
+    			'davisitare' => $davisitare,
+    			'paginator' => $paginator,
     	));
     }
     

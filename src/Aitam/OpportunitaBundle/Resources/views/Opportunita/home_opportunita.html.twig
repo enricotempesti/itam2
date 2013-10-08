@@ -37,8 +37,33 @@
                {% block sidebar %}
                    {{ parent() }}
                {% endblock %}    
-            </div>
-            
+            </div></br>
+                           <div class="paginator">
+        {% if paginator.currentpage != 1 %}
+                <a class="previous" href="{{path('AitamOpportunitaBundle_home_Opportunita',{'page' :  paginator.currentpage-1}  ) }}"style="color:black">Indietro</a>
+        {% endif %}
+        {% for i in 1..paginator.numpages%}
+            {% if paginator.range.0 > 2 and i == paginator.range.0 %}
+                ...
+            {% endif %}
+
+            {%  if(i==1 or i==paginator.numpages or i in paginator.range) %}
+                {% if i==paginator.currentpage %}
+                <a class="active" href="{{ path('AitamOpportunitaBundle_home_Opportunita', {'page' : i } ) }}" style="color:red">page{{i}}|</a>
+                {% else %}
+                <a href="{{ path('AitamOpportunitaBundle_home_Opportunita', {'page' : i } ) }}">page{{i}}|</a> 
+                {% endif %}
+            {% endif %}
+
+            {% if paginator.range[paginator.midrange -1] < paginator.numpages -1 and i == paginator.range[paginator.midrange-1] %}
+                ...
+            {% endif %}
+        {% endfor %}
+        {% if paginator.currentpage < paginator.numpages %}
+                <a class="next" href="{{ path('AitamOpportunitaBundle_home_Opportunita',  {'page' : paginator.currentpage+1 } ) }}"style="color:black">Avanti</a>
+        {% endif %}
+
+            </div>     
             
 			<div class="wide_content">
             	<h2>Terms &amp; Conditions</h2>

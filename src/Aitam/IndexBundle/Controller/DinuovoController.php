@@ -45,6 +45,7 @@ class DinuovoController extends Controller {
 
         $offset = ($page - 1) * $blog_per_page;
         $limit = $blog_per_page;
+        
         $em = $this->getDoctrine()
                 ->getEntityManager();
 

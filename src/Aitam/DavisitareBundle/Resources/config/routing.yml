@@ -8,8 +8,8 @@ AitamDavisitareBundle_davisitare_show:
         id: \d+
 
 AitamDavisitareBundle_home_davisitare:
-    pattern:  /home_davisitare
-    defaults: { _controller: AitamDavisitareBundle:Davisitare:home_davisitare }
+    pattern:  /home_davisitare/{page}
+    defaults: { _controller: AitamDavisitareBundle:Davisitare:home_davisitare,page: 1 }
     requirements:
         _method:  GET 
         
