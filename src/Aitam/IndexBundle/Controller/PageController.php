@@ -75,11 +75,6 @@ class PageController extends Controller
     	return $this->render('AitamIndexBundle:Page:statuto.html.twig');
     }
     
-    public function progettiAction()
-    {
-    	return $this->render('AitamIndexBundle:Page:progetti.html.twig');
-    } 
-    
     public function testimonialAction()
     {
     	return $this->render('AitamIndexBundle:Page:progetti.html.twig');

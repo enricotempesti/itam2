@@ -4,3 +4,5 @@ parameters:
     aitam_dinuovo.commenti.latest_comment_limit: 4
     blog_per_seconda_pagina : 3
     range_pagine : 3
+    iscritti_per_seconda_pagina : 5
+    range_pagine : 3

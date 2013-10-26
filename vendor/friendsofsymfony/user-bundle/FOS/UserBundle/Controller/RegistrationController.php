@@ -37,24 +37,22 @@ class RegistrationController extends ContainerAware {
 
 		$cal->ServiceFacebook();
 		$loginUrl = $cal->loginUrl;
-if ($loginUrl){
-		$cal->ServiceGoogle();
-}
+		if ($loginUrl) {
+			$cal->ServiceGoogle();
+		}
 		$loginUrlGoogle = $cal->loginUrlGoogle;
 
 		$usergoogle = $cal->usergoogle['id'];
 
-		var_dump($usergoogle);
+		//	var_dump($usergoogle);
 
 		$loginUrl = $cal->loginUrl;
 		$userface = $cal->user;
-		var_dump($userface);
-
-		//     $em = $this->getDoctrine()->getEntityManager();
+		//	var_dump($userface);
 
 		$faceid = $this->container->get('fos_user.user_manager')
 				->findUserByEmail($userface);
-		//    var_dump($faceid);
+
 		$googleid = $this->container->get('fos_user.user_manager')
 				->findUserByEmail($usergoogle);
 
@@ -122,27 +120,27 @@ if ($loginUrl){
 							array('user' => $user,));
 
 		}
-		
-		if($usergoogle != null and $googleid){
-			
+
+		if ($usergoogle != null and $googleid) {
+
 			$user = $googleid;
-			
+
 			$route = 'fos_user_registration_confirmed';
 			$this
-			->setFlash('fos_user_success',
-					'registration.flash.user_created');
+					->setFlash('fos_user_success',
+							'registration.flash.user_created');
 			$url = $this->container->get('router')->generate($route);
-			
+
 			$response = new RedirectResponse($url);
-			
+
 			$this->authenticateUser($user, $response);
-			
+
 			return $this->container->get('templating')
-			->renderResponse(
-					'FOSUserBundle:Registration:confirmed.html.'
-					. $this->getEngine(),
-					array('user' => $user,));
-			
+					->renderResponse(
+							'FOSUserBundle:Registration:confirmed.html.'
+									. $this->getEngine(),
+							array('user' => $user,));
+
 		}
 
 		$process = $formHandler->process($confirmationEnabled);

@@ -22,9 +22,9 @@ AitamIndexBundle_statuto:
     requirements:
         _method:  GET  
         
-AitamIndexBundle_progetti:
-    pattern:  /progetti
-    defaults: { _controller: AitamIndexBundle:Page:progetti }
+AitamIndexBundle_listaiscritti:
+    pattern:  /listaiscritti/{page}
+    defaults: { _controller: ApplicationSonataUserBundle:User:listaiscritti,page: 1  }
     requirements:
         _method:  GET 
         

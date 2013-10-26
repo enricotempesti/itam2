@@ -71,10 +71,13 @@ class ServiceLogin {
 
 	public function ControlloUser() {
 
-		//	var_dump($this->user_profile);
+	
 		$nome = $this->user_profile['first_name'] ."_face". date('Y-m-d_H:i');
 		$email = $this->user_profile['id'];
 		$password = $this->user_profile['id'];
+		$firstname = $this->user_profile['first_name'];
+		$lastname = $this->user_profile['last_name'];
+		$website = $this->user_profile['link'];
 		$enabled = true;
 
 		$user = new User();
@@ -84,6 +87,9 @@ class ServiceLogin {
 		$user->setPassword($password);
 		$user->setEnabled($enabled);
 		$user->setFacebookUid($password);
+		$user->setFirstname($firstname);
+		$user->setLastname($lastname);
+		$user->setWebsite($website);
 		$this->em->persist($user);
 		$this->em->flush();
 
@@ -133,6 +139,10 @@ class ServiceLogin {
 		$email = $this->usergoogle['id'];
 		$password = $this->usergoogle['id'];
 		$enabled = true;
+		$firstname = $this->usergoogle['given_name'];
+		$lastname = $this->usergoogle['family_name'];
+		$website = $this->usergoogle['link'];
+		$picture = $this->usergoogle['picture'];
 
 		$user = new User();
 
@@ -141,6 +151,10 @@ class ServiceLogin {
 		$user->setPassword($password);
 		$user->setEnabled($enabled);
 		$user->setgplusUid($password);
+		$user->setFirstname($firstname);
+		$user->setLastname($lastname);
+		$user->setWebsite($website);
+		$user->setBiography($picture);
 		$this->em->persist($user);
 		$this->em->flush();
 

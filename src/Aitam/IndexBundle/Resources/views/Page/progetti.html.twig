@@ -1,53 +1,84 @@
 {% extends 'AitamIndexBundle::layout.html.twig' %}
-{% block title %}Progetti.Aitam{% endblock%}
+{% block title %}Lista iscritti{% endblock%}
 {% block body %}
 
 <div class="center_content_pages">
         
-        <h2>Testimonial</h2>
+        <h2>Lista iscritti</h2>
         <div class="left_content">            
             <div class="block_wide">
-                <p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-<br /><br />
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-                </p>
-
-            
-            
+    {% for listauser in listauser %}
+                <div class="dinuovo">
+                <div class="date"><time datetime="{{ listauser.createdat|date('c') }}">
+                    
+            {{ listauser.createdat|localizeddate() }}</time>
+                   
+             </div>
+                
+             {% if listauser.facebookUid %}   
+                 <img src="https://graph.facebook.com/{{listauser.facebookUid}}/picture"class="small"/>
+                  {{ listauser.firstname | upper  }}</br>
+                <a href ="{{ listauser.website }}">link face</a>
+             {% elseif listauser.gplusUid %} 
+                <img src="{{ listauser.biography}}"class="small"/>
+                  {{ listauser.firstname | upper  }}</br>
+                  <a href ="{{ listauser.website }}">link google</a>
+             {% else %}
+                <img src ="{{ asset('bundles/aitamindex/images/anonimo.jpg') }}"class="small"/>            
+                 {{ listauser.username | upper  }} 
+             {% endif %}
+               <article      
+                        
+              
+   {% else %}
+                <p>non ci sono nuove entrate</p>
+    {% endfor %}
+            </article>
+           </div>        
+          </div>
+         </div>
+        <div class="right_block">
+            	            <div class="right_block">
+               {% block sidebar %}
+                   {{ parent() }}
+               {% endblock %}     
+            </div>   
             </div>
-        
-        
-        </div>
-        
-        
-            <div class="right_block">
-            	<h2>Latest news</h2>
-                
-                <div class="home_news">
-                <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit adipisicing elit</a>
-                <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit adipisicing elit , consectetur adipisicing elit adipisicing elit</a>
-                <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                </div>
-
-                
-                
-            </div>
             
+            
+                            <div class="paginator">
+        {% if paginator.currentpage != 1 %}
+                <a class="previous" href="{{path('AitamIndexBundle_listaiscritti',{'page' :  paginator.currentpage-1}  ) }}"style="color:black">Indietro</a>
+        {% endif %}
+        {% for i in 1..paginator.numpages%}
+            {% if paginator.range.0 > 2 and i == paginator.range.0 %}
+                ...
+            {% endif %}
+
+            {%  if(i==1 or i==paginator.numpages or i in paginator.range) %}
+                {% if i==paginator.currentpage %}
+                <a class="active" href="{{ path('AitamIndexBundle_listaiscritti', {'page' : i } ) }}" style="color:red">page{{i}}|</a>
+                {% else %}
+                <a href="{{ path('AitamIndexBundle_listaiscritti', {'page' : i } ) }}">page{{i}}|</a> 
+                {% endif %}
+            {% endif %}
+
+            {% if paginator.range[paginator.midrange -1] < paginator.numpages -1 and i == paginator.range[paginator.midrange-1] %}
+                ...
+            {% endif %}
+        {% endfor %}
+        {% if paginator.currentpage < paginator.numpages %}
+                <a class="next" href="{{ path('AitamIndexBundle_listaiscritti',  {'page' : paginator.currentpage+1 } ) }}"style="color:black">Avanti</a>
+        {% endif %}
+
+            </div>
             
 			<div class="wide_content">
-            	<h2>Terms &amp; Conditions</h2>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-</p>            
+<h2>Termini &amp; Condizioni</h2>
+<p>Ricordiamo a tutti gli utenti del sito, che anche se permettiamo la pubblicita', sia da parte di chi scrive consigli <br />
+  e rubriche che da parte degli utenti nei forum, essendo il nostro un sito dedicato al servizio della nostra comunita',<br />
+  e fonte di informazione e dibattito, non siamo in alcuna maniera responsabili relativamente ad eventuali scambi di<br />
+  denaro o dei servizi che vengano negoziati, promessi o offerti dagli utenti. Vi consigliamo sempre di usare il buon senso.</p>           
             </div> 
             
    

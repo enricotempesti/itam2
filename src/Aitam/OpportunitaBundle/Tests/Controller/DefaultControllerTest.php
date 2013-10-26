@@ -1,6 +1,6 @@
 <?php
 
-namespace Aitam\DavisitareBundle\Tests\Controller;
+namespace Aitam\OpportunitaBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

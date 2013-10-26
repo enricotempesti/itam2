@@ -16,8 +16,8 @@ use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * 
- * @ORM\Entity(repositoryClass="ApplicationSonataUserBundle\Repository\LoginRepository")
+ * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ApplicationSonataUserBundle\Repository\userRepository")
  */
 class User extends BaseUser
 {
@@ -35,4 +35,5 @@ class User extends BaseUser
     {
         return $this->id;
     }
+    
 }
