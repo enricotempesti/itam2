@@ -45,6 +45,14 @@
                     <li><a href="{{ path('AitamIndexBundle_about') }}">Il caff&egrave</a></li>
                     <li><a href="{{ path('AitamIndexBundle_contact') }}">Contact</a></li>
                     <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                    <li>            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} 
+                <a href="{{ path('fos_user_security_logout') }}"></li>
+                  <li>  {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+                <a href="{{ path ('sonata_user_profile_show') }} ">profilo</a>
+                </li>
+            {% endif %}
                 </ul>
             </div>
         {% endblock %}   

@@ -1,7 +1,8 @@
 /app/cache
 /app/logs
 /vendor
-/vendor
 /web/phpBB3/cache
-/web\phpBB3/cache
 /nbproject
+/phpunit-report
+/nbproject
+/web/phpBB3

@@ -68,3 +68,14 @@ AitamDavisitareBundle:
 AitamOpportunitaBundle:
     resource: "@AitamOpportunitaBundle/Resources/config/routing.yml"
     prefix:   /
+UserProfile:
+    pattern:  /User_profilo
+    defaults: { _controller: ApplicationSonataUserBundle:Profilo:create }
+    requirements:
+        _method:  GET
+UserProfile2:
+    pattern:  /Nuovo_profilo
+    defaults: { _controller: ApplicationSonataUserBundle:Profilo:nuovoProfilo }
+    requirements:
+        _method:  GET|POST
+    

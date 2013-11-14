@@ -1,0 +1,41 @@
+{% extends 'AitamIndexBundle::layout.html.twig' %}
+{% block title %}Edit_Profilo{% endblock%}
+{% block body %}
+
+<div class="center_content_pages">
+        
+        <h2>Edit Profilo</h2>
+        <div class="left_content">            
+            <div class="block_wide">
+       
+        <section class="comments" id="comments">
+        <section class="previous-comments">   
+            
+<h3>Racconti creation</h3>
+
+<form action="{{ path('UserProfile2') }}" method="post" {{ form_enctype(form) }} class="contact_c">
+    
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+    {{ form_rest(form) }}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <p><input type="submit" value="Invia"> </p>
+                {% else %}
+                </br><h3><p>Per inviare un racconto devi essere registrato :</p></br>
+                <a href="{{ path('fos_user_registration_register') }}"> iscriviti  qui  </h3></a>
+                {% endif %}  
+</form>
+
+{#}
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('racconti') }}">
+            </br><h3><p>Ultimi Racconti</h3></br>
+        </a>
+    </li>
+</ul>   #}
+
+</section>
+</section>
+    </div></div>
+    {% endblock %} 

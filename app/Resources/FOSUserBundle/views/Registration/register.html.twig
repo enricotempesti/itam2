@@ -1,0 +1,36 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block fos_user_content %}
+
+     <div class="center_content_pages">    
+              <div class="comments">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_registration_register') }}">registrati</a>
+            {% endif %}
+        
+
+        {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                <div class="{{ type }}">
+                    {{ message|trans({}, 'FOSUserBundle') }}
+                </div>
+            {% endfor %}
+        {% endfor %}   
+        
+        </div>
+        </div>
+
+
+
+{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+<a href={{loginUrl}}>Iscriviti con facebook</a>
+<a href={{loginUrlGoogle}}>iscriviti con google+</a>
+
+{% endblock fos_user_content %}
+
+

@@ -78,6 +78,7 @@ class ServiceLogin {
 		$firstname = $this->user_profile['first_name'];
 		$lastname = $this->user_profile['last_name'];
 		$website = $this->user_profile['link'];
+		$picture = "https://graph.facebook.com/$password/picture";
 		$enabled = true;
 
 		$user = new User();
@@ -90,6 +91,7 @@ class ServiceLogin {
 		$user->setFirstname($firstname);
 		$user->setLastname($lastname);
 		$user->setWebsite($website);
+		$user->setBiography($picture);
 		$this->em->persist($user);
 		$this->em->flush();
 

@@ -60,6 +60,8 @@ fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
     registration:
+     #   form:
+      #      type: application_sonata_user_registration
         confirmation:
             enabled:    true
             from_email:
@@ -77,6 +79,7 @@ fos_user:
     profile:  # Authentication Form
         form:
             type:               fos_user_profile
+            handler:            fos_user.profile.form.handler.default
             name:               fos_user_profile_form
             validation_groups:  [Authentication] # Please note : this is not the default value
 
@@ -172,12 +175,19 @@ sonata_user:
             controller:     SonataAdminBundle:CRUD
             translation:    SonataUserBundle
  
+  #  profile:  # Profile Form (firstname, lastname, etc ...)
+   #     form:
+    #        type:               sonata_user_profile
+     #       handler:            sonata.user.profile.form.handler.default
+      #      name:               sonata_user_profile_form
+       #     validation_groups:  [Profile]
+            
     profile:  # Profile Form (firstname, lastname, etc ...)
         form:
-            type:               sonata_user_profile
-            handler:            sonata.user.profile.form.handler.default
+            type:               application_sonata_user_profile
+            handler:            sonata_user.form.handler.profile
             name:               sonata_user_profile_form
-            validation_groups:  [Profile]
+            validation_groups:  [Profile]            
           
 # Swiftmailer Configuration
 swiftmailer:
@@ -219,6 +229,17 @@ assetic:
         #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar    
 
 services:
+    sonata_user.profile.form.type:
+        class: Application\Sonata\UserBundle\Form\ProfileType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: application_sonata_user_profile }
+
+    sonata_user.form.handler.profile:
+        class: Application\Sonata\UserBundle\Form\ProfileFormHandler
+        arguments: ["@sonata.user.profile.form", "@request", "@fos_user.user_manager"]
+        scope: request
+        public: false
 
     twig.extension.intl:
         class: Twig_Extensions_Extension_Intl

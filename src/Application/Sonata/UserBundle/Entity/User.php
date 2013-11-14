@@ -18,22 +18,41 @@ use Doctrine\ORM\EntityRepository;
 /**
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="ApplicationSonataUserBundle\Repository\userRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-class User extends BaseUser
-{
-    /**
-     * @var integer $id
-     */
-    protected $id;
+class User extends BaseUser {
+	/**
+	 * @var integer $id
+	 */
+	protected $id;
 
-    /**
-     * Get id
-     *
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    
+	protected $image;
+
+	/**
+	 * @ORM\Column(type="string", length=100)
+	 */
+	protected $biography;
+
+	/**
+	 * 
+	 */
+	public $file;
+
+	/**
+	 * Get id
+	 *
+	 * @return integer $id
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+	public function getImage() {
+		return $this->image;
+	}
+
+	public function setImage($image) {
+		$this->image = $image;
+	}
+
 }
