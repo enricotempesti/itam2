@@ -17,15 +17,15 @@ class ProfiloController extends Controller {
 	public function createAction() {
 
 		$user = $this->getUser();
-		//	var_dump($user);
+        if($user === null){
+        	
+        }
 		$id = $user->getid();
 
 		$em = $this->getDoctrine()->getEntityManager();
 		$entity = new User();
-		//	$entity = $em->getRepository('ApplicationSonataUserBundle:user')->find($id);
+			$entity = $em->getRepository('ApplicationSonataUserBundle:user')->find($id);
 		//	var_dump($entity);
-
-		$entity = new User();
 
 		$form = $this->createForm(new ProfiloType(), $entity);
 
@@ -40,7 +40,6 @@ class ProfiloController extends Controller {
 	public function nuovoProfiloAction(Request $request) {
 
 		$user = $this->getUser();
-		//	var_dump($user);
 		$id = $user->getid();
 		$em = $this->getDoctrine()->getEntityManager();
 		$entity = new User();
@@ -59,28 +58,43 @@ class ProfiloController extends Controller {
 			$dati = $form->getData();
 		//	var_dump($dati);
 
-			$firstname = $dati->getfirstname();
-			$lastname = $dati->getlastname();
-			
+			$website = $dati->getwebsite();
+			$dateOfBirth = $dati->getdateOfBirth();
 			$file=$dati->getbiography();
-	//		var_dump($file);
 			
-			$biography = "_image" . date('Y-m-d_H-i')
-					. $dati->getbiography()->getClientOriginalName();
+		$a = substr($user->getBiography(), 14 , 8);
+        
+
+		    if ($dati->getbiography() === null ){
+			    $biography = '_imageanonimo.jpg';
+			}
+			else{
+			$biography = "_image" . date('Y-m-d_H-i').$dati->getbiography()->getClientOriginalName();
+			}
+			if ($a == 'facebook' or $a == 'ogleuser'){
+				$biography=$user->getBiography();
+			}
 			
+
 			$profilo = new ProfiloController();
 			$profilo->upload($file,$biography);
 
-			$user->setlastname($lastname);
+			$user->setwebsite($website);
 			$user->setbiography($biography);
-			$user->setfirstname($firstname);
-
+            $user->setdateOfBirth($dateOfBirth);
+			
 			$em->flush();
 
 			return $this
 					->redirect($this->generateUrl('sonata_user_profile_show'));
 
 		}
+		
+		return $this
+				->render(
+						'ApplicationSonataUserBundle:Profilo:edit_profilo.html.twig',
+						array('entity' => $entity,
+								'form' => $form->createView()));
 	}
 
 	public function upload($file,$biography) {

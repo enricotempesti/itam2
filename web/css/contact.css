@@ -18,3 +18,9 @@ form.contact input[type="user"]
 form.contact_c textarea {  width: 620px; height: 150px; line-height: 26px; font-size: 20px; }
 form.contact_c input[type="submit"] {  width: 628px; line-height: 26px; font-size: 20px; min-height: 26px; }
 form.contact_c ul li { color: #ff0000; margin-bottom: 5px; }
+form.contact_c input[type="url"]
+    {  width: 620px; line-height: 26px; font-size: 20px; min-height: 26px }
+form.contact_c input[type="file"]
+    { width: 620px; line-height: 26px; font-size: 20px; min-height: 26px; padding: 10px; }
+form.contact_c input[type="date"]
+    { width: 620px; line-height: 26px; font-size: 20px; min-height: 26px; padding: 10px;}

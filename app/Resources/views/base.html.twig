@@ -46,7 +46,12 @@
                     <li><a href="{{ path('AitamIndexBundle_contact') }}">Contact</a></li>
                     <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
                     <li>            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} 
+                   
+                    {% if  app.user.username | slice (0,5) == '_face' or app.user.username | slice (0,5) == '_goog' %}
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username | title | slice(21,12)}, 'FOSUserBundle') }}
+                    {% else %} 
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username | title | slice(0,12)}, 'FOSUserBundle') }}
+                    {% endif %}
                 <a href="{{ path('fos_user_security_logout') }}"></li>
                   <li>  {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a>

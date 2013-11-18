@@ -13,8 +13,7 @@
                     
             {{ listauser.createdat|localizeddate() }}</time>
                    
-             </div>
-                
+             </div>  
              {% if listauser.facebookUid %}   
                  <img src="https://graph.facebook.com/{{listauser.facebookUid}}/picture"class="small"/>
                   {{ listauser.firstname | upper  }}</br>
@@ -23,6 +22,9 @@
                 <img src="{{ listauser.biography}}"class="small"/>
                   {{ listauser.firstname | upper  }}</br>
                   <a href ="{{ listauser.website }}">link google</a>
+             {% elseif listauser.biography |slice(0, 6) == '_image' %}
+              <img src="{{ asset(['bundles/Immaginiuser/', listauser.biography]|join) }}" alt="immagine profilo" class="small"/>
+                  {{ listauser.firstname | upper  }}</br>
              {% else %}
                 <img src ="{{ asset('bundles/aitamindex/images/anonimo.jpg') }}"class="small"/>            
                  {{ listauser.username | upper  }} 

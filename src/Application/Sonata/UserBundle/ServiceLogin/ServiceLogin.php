@@ -72,7 +72,7 @@ class ServiceLogin {
 	public function ControlloUser() {
 
 	
-		$nome = $this->user_profile['first_name'] ."_face". date('Y-m-d_H:i');
+		$nome = "_face". date('Y-m-d_H:i').$this->user_profile['first_name'];
 		$email = $this->user_profile['id'];
 		$password = $this->user_profile['id'];
 		$firstname = $this->user_profile['first_name'];
@@ -137,7 +137,7 @@ class ServiceLogin {
 
 	public function ControlloUserGoogle() {
 		
-		$nome = $this->usergoogle['given_name'] ."_google". date('Y-m-d_H:i');
+		$nome = "_goog". date('Y-m-d_H:i').$this->usergoogle['given_name'];
 		$email = $this->usergoogle['id'];
 		$password = $this->usergoogle['id'];
 		$enabled = true;

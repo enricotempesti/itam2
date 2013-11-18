@@ -12,6 +12,7 @@
 namespace Application\Sonata\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\EntityRepository;
 
@@ -33,9 +34,15 @@ class User extends BaseUser {
 	 */
 	protected $biography;
 
-	/**
-	 * 
-	 */
+    /**
+     * @Assert\Image(
+     *     minWidth = 100,
+     *     maxWidth = 1200,
+     *     minHeight = 100,
+     *     maxHeight = 1200
+     * )
+     * @Assert\File(maxSize="1000000")
+     */
 	public $file;
 
 	/**

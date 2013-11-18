@@ -11,12 +11,32 @@
         <section class="comments" id="comments">
         <section class="previous-comments">   
             
-<h3>Racconti creation</h3>
+<h3>Modifica i dati</h3>
 
 <form action="{{ path('UserProfile2') }}" method="post" {{ form_enctype(form) }} class="contact_c">
     
+            {{ form_label(form.dateOfBirth) }}
+            {{ form_errors(form.dateOfBirth) }}
+            {{ form_widget(form.dateOfBirth) }}
+            
+            {{ form_label(form.website) }}
+            {{ form_errors(form.website) }}
+            {{ form_widget(form.website) }}
+    {% if app.user.biography |slice(0, 6) == '_image' %}
+    <img src="{{ asset(['bundles/Immaginiuser/', app.user.biography]|join) }}" alt="immagine profilo" class="imgprofilo"/>
+    {% else %}
+    <img src="{{ app.user.biography }}" alt="immagine profilo" class="imgprofilo"/> 
+    {% endif %}
+            
+            {{ form_label(form.biography) }}
+            {{ form_errors(form.biography) }}
+            {{ form_widget(form.biography) }}
+            
+            {#}
     {{ form_errors(form) }}
     {{ form_widget(form) }}
+    #}
+    
     {{ form_rest(form) }}
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <p><input type="submit" value="Invia"> </p>

@@ -12,12 +12,18 @@ class ProfiloType extends AbstractType
 	
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder
-
-		    ->add('firstname', null, array('required' => false))
-            ->add('lastname', null, array('required' => false))
-            ->add('dateOfBirth', 'birthday', array('required' => false))
-            ->add('website', 'url', array('required' => false))
-		    ->add('biography', 'file', array('required' => false, 'label' => 'Invia Foto'));
+		
+            ->add('dateOfBirth', 'date', array( 'label' => 'Data del compleanno','required' => false))
+            ->add('website', 'url', array('label' => 'Le tue pagine','required' => false))
+		    ->add('biography', 'file', array( 
+		    		//'data_class' => 'Symfony\Component\HttpFoundation\File\File',
+                    //'property_path' => 'biography',
+		    		'required' => false, 'label' => 'Cambia la foto',
+		    		'data_class' => null,
+		    		    'attr' => array(
+                        'accept' => 'image/*',
+                        'multiple' => true,
+		    		))); 
 		
 	}
 		

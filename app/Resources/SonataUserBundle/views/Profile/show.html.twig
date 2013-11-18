@@ -16,20 +16,24 @@
 <div class="sonata-user-show">
       
     {% if app.user.biography |slice(0, 6) == '_image' %}
-    <img src="{{ asset(['bundles/Immaginiuser/', app.user.biography]|join) }}" alt="immagine profilo" class="small"/>
+    <img src="{{ asset(['bundles/Immaginiuser/', app.user.biography]|join) }}" alt="immagine profilo" class="imgprofilo"/>
     {% else %}
-    <img src="{{ app.user.biography }}" alt="immagine profilo" class="small"/> 
+    <img src="{{ app.user.biography }}" alt="immagine profilo" class="imgprofilo"/> 
     {% endif %}
     
-    <b>{{ app.user.fullname }}</b></br>
-    <a href="{{app.user.website}}">Le tue pagine </a>
+    <h2><b>{{ app.user.username | title | slice(21,12)}}</b></br></h2>
+                    
+    <b>data del compleanno</b>
+                     
+    <h2><b>{{ app.user.dateOfBirth | date(' d - m') }}</b></br></h2>
+    <h2><a href="{{app.user.website}}">Le tue pagine </a></h2>
     
 
     <ul>
-        <li><a href="{{ path('UserProfile') }}">edit profilo</a></li>  
-     {#}   <li><a href="{{ path('sonata_user_profile_edit') }}">{{ "link_edit_profile" | trans({}, 'SonataUserBundle')}}</a></li> #}
+        <li><h3><a href="{{ path('UserProfile') }}">edit profilo</a></h3></li>  
+     {#}   <li><a href="{{ path('sonata_user_profile_edit') }}">{{ "link_edit_profile" | trans({}, 'SonataUserBundle')}}</a></li> 
         <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">{{ "link_edit_authentication" | trans({}, 'SonataUserBundle')}}</a></li>
-    </ul>
+    </ul> #}
 </div>
 
 </section>
