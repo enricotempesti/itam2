@@ -111,10 +111,28 @@ class ProfiloController extends Controller {
 		// e il nome del file di destinazione
 	$file->move($this->getUploadRootDir(),
 						$biography);
-
-		// impostare la proprietà del percorso al nome del file dove è stato salvato il file
-		$biography = $file->getClientOriginalName();
-
+		
+	$filename = $this->getUploadRootDir()."/".$biography; // percorso al file dell'immagine
+	
+	// the desired width of the image
+	$width = 100;
+	$dest = $this->getUploadRootDir()."/".$biography; // directory di salvataggio delle miniature create
+	// content type
+	header('Content-Type: image/jpeg');
+	
+	list($width_orig, $height_orig) = getimagesize($filename);
+	
+	$ratio_orig = $width_orig/$height_orig;
+	$height = $width/$ratio_orig;
+	
+	// resample
+	$image_p = imagecreatetruecolor($width, $height);
+	$image = imagecreatefromjpeg($filename);
+	imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+	
+	// output
+	imagejpeg($image_p, $dest, 60);
+	
 		// impostare a null la proprietà file dato che non è più necessaria
 		$file = null;
 	}
