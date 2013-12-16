@@ -59,3 +59,9 @@ AitamIndexBundle_forum_no_registrato:
     defaults: { _controller: AitamIndexBundle:Page:forum_no_registrato }
     requirements:
         _method:  GET 
+        
+AitamIndexBundle_caffe:
+    pattern:  /caffe
+    defaults: { _controller: AitamCaffeBundle:Caffe:new }
+    requirements:
+        _method:  GET 

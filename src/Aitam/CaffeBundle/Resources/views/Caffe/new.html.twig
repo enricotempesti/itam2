@@ -1,0 +1,74 @@
+{% extends 'AitamIndexBundle::layout.html.twig' %}
+{% block title %}Progetti.Aitam{% endblock%}
+{% block body %}
+
+<div class="center_content_pages">
+        
+        <h2>Testimonial</h2>
+        <div class="left_content">            
+            <div class="block_wide">
+       
+        <section class="comments" id="comments">
+        <section class="previous-comments">   
+            
+<h3>Racconti creation</h3>
+
+<form action="{{ path('caffe_create') }}" method="post" {{ form_enctype(form) }} class="contact_c">
+    
+ {% if nonconnessione is defined %}  <h2>{{  nonconnessione | upper   }}</h2>
+ {% endif %}
+    {{ form_widget(form) }}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <p><input type="submit" value="Invia"> </p>
+                {% else %}
+                </br><h3><p>Per inviare un caffe devi essere registrato :</p></br>
+                <a href="{{ path('fos_user_registration_register') }}"> iscriviti  qui  </h3></a>
+                {% endif %}
+</form>
+
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('caffe') }}">
+            </br><h3><p>Pagina Caffe</h3></br>
+        </a>
+    </li>
+</ul>
+
+</section>
+</section>
+    </div>        
+            
+            </div>
+        
+        
+        </div>
+        
+        
+            <div class="right_block">
+            	            <div class="right_block">
+               {% block sidebar %}
+                   {{ parent() }}
+               {% endblock %}     
+            </div>
+
+                
+                
+            </div>
+            
+            
+			<div class="wide_content">
+            	<h2>Terms &amp; Conditions</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>            
+            </div> 
+            
+   
+        
+        <div class="clear"></div>
+        </div>
+        {% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'AitamIndexBundle::layout.html.twig' %}
+{% block title %}Caffe.Aitam{% endblock%}
+{% block body %}
+
+<div class="center_content_pages">
+        
+        <h2>Caffe</h2>
+        <div class="left_content">            
+            <div class="block_wide">
+       
+        <section class="comments" id="comments">
+        <section class="previous-comments"> 
+        
+        <form action="{{ path('caffe_create') }}" method="post" {{ form_enctype(form) }} class="contact_c">
+    
+ {% if nonconnessione is defined %}  <h2>{{  nonconnessione | upper   }}</h2>
+ {% endif %}
+    {{ form_widget(form) }}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <p><input type="submit" value="Invia"> </p>
+                {% else %}
+                </br><h3><p>Per inviare un racconto devi essere registrato :</p></br>
+                <a href="{{ path('fos_user_registration_register') }}"> iscriviti  qui  </h3></a>
+                {% endif %}
+</form>  
+ </br>           
+<article class="dinuovo">
+</br>
+<h2>   TUTTI I CAFF&Egrave  </h2>
+</br>
+    {% for entities in entities %}
+    
+            <h3>  {{ entities.titolo | upper}} </h3>    
+
+                    <div class="date2"><time datetime="{{ entities.created|date('c') }}">
+                {{ entities.created|localizeddate() }}</time></div> 
+                   
+                    </br>
+                    <footer class="meta">
+                        <p>DESCRIZIONE <span class="highlight">{{ entities.descrizione }}</span> </p>
+                        <p>Scritto da <span class="highlight">{{ entities.autore }}</span> </p>
+                    </footer>
+                <article class="dinuovo2">
+                    <img src="{{ asset(['bundles/AitamCaffe/images/', entities.images1]|join) }}" /></article>
+      
+                <div class="video2 ">                           
+                        
+                        {% if entities.embedvideo1 | length == 11 %}
+                        <iframe width="155"  src="http://www.youtube.com/embed/{{entities.embedvideo1}}"  frameborder="0" allowfullscreen></iframe>
+                        
+                        {% elseif entities.embedvideo1 | length == 8 %}
+                        <iframe width="155"  src="http://player.vimeo.com/video/{{entities.embedvideo1}}?byline=0&amp;portrait=0"></iframe>
+                  {#      {% else %}
+                        <img src="{{ asset('bundles/raccontibundle/immagini/novideo2.jpg') }}"> #}
+                        {% endif %}
+                        </div>
+                        
+                                    {% else %}
+                <p>non ci sono nuove entrate</p>
+    {% endfor %}
+    
+</br>
+    <H3><a href="{{ path('AitamIndexBundle_caffe') }}">Inserisci un altro caff&egrave</a></H3>
+
+   
+</article>
+</section>
+</section>
+</div>
+    </div>        
+            
+            </div>
+                 
+       
+        
+            <div class="right_block">
+            	            <div class="right_block">
+               {% block sidebar %}
+                   {{ parent() }}
+               {% endblock %}     
+            </div>
+
+                
+                
+            </div>
+            
+            
+			<div class="wide_content">
+            	<h2>Terms &amp; Conditions</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>            
+            </div> 
+            
+   
+        
+        <div class="clear"></div>
+        </div>
+        {% endblock %}

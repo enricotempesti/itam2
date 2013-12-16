@@ -176,9 +176,10 @@ float:right;
 .date { clear: left;margin-bottom: 15px;font-family: serif;font-weight: bold; border-bottom: 1px solid #ccc; font-size: 14px; color: #B52025; line-height: 30px }
 .dinuovo { margin-bottom: 20px; }
 .dinuovo img { width: 120px; float: left; padding: 5px; border: 1px solid #ccc; margin: 0 10px 10px 0; }
-.dinuovo2 img { width: 300px; float: left; padding: 5px; border: 1px solid #ccc; margin: 0 10px 10px 0; }
+.dinuovo2 img { width: 250px; min-height: 170px; float: left; padding: 5px; border: 1px solid #ccc; margin: 0 10px 10px 0; }
 .video { width: 480px;height: 680px; float: left; padding:5px; margin: 0 10px 10px 0; }
 .video iframe { width: 480px; float: left; padding: 5px; border: 1px solid #ccc; }
+.video2 iframe { width: 230px;height: 170px; float: left; padding: 5px; border: 1px solid #ccc; }
 .dinuovo .meta { clear: left; margin-bottom: 20px; }
 .dinuovo .snippet p.continue { margin-bottom: 0; text-align: right; }
 .dinuovo .meta { font-style: italic; font-size: 12px; color: #666; }
