@@ -99,6 +99,11 @@ class Caffe {
 	 * @ORM\Column(name="images1", nullable=true)
 	 */
 	protected $images1;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="Commenticaffe", mappedBy="titolo")
+	 */
+	protected $commenticaffe;
 
 	/**
 	 * @Assert\Image(
@@ -356,4 +361,44 @@ class Caffe {
 		$this->inserisciurl1 = $inserisciurl1;
 	}
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commenticaffe = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add commenticaffe
+     *
+     * @param \Aitam\CaffeBundle\Entity\Commenticaffe $commenticaffe
+     * @return Caffe
+     */
+    public function addCommenticaffe(\Aitam\CaffeBundle\Entity\Commenticaffe $commenticaffe)
+    {
+        $this->commenticaffe[] = $commenticaffe;
+    
+        return $this;
+    }
+
+    /**
+     * Remove commenticaffe
+     *
+     * @param \Aitam\CaffeBundle\Entity\Commenticaffe $commenticaffe
+     */
+    public function removeCommenticaffe(\Aitam\CaffeBundle\Entity\Commenticaffe $commenticaffe)
+    {
+        $this->commenticaffe->removeElement($commenticaffe);
+    }
+
+    /**
+     * Get commenticaffe
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCommenticaffe()
+    {
+        return $this->commenticaffe;
+    }
 }
