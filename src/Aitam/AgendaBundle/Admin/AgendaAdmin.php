@@ -24,6 +24,7 @@ class AgendaAdmin extends Admin
             ->add('newsdata')
             ->add('newstitle')
             ->add('infoevento')
+            ->add('image')
         ;
     }
 
@@ -38,7 +39,8 @@ class AgendaAdmin extends Admin
             
             ->add('newsdata')
             ->add('newstitle')
-            ->add('infoevento')            
+            ->add('infoevento')
+            ->add('file', 'file', array('required' => false))
         ;
     }
 
@@ -53,6 +55,8 @@ class AgendaAdmin extends Admin
             ->addIdentifier('newsdata')
             ->add('newstitle')
             ->add('infoevento')
+            ->add('image', 'string', array('template' =>
+            		'SonataMediaBundle:MediaAdmin:list_image.html.twig'))
         ;
     }
 
@@ -67,6 +71,7 @@ class AgendaAdmin extends Admin
             ->add('newsdata')
             ->add('newstitle')
             ->add('infoevento')
+            ->add('image')
         ;
     }
 }

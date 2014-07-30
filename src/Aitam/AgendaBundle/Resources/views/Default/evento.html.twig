@@ -2,15 +2,24 @@
  
  
 {% block body %}
- 
+ <a href="{{ path('AitamAgendaBundle_agenda') }}"><h2> >> Agenda</h2></a>
  <div class="main-col">
  
-
-
-                <h2> {{ sqlID.newstitle }}</h2>
-  			         {{ sqlID.infoevento}}
+<div class="center_content_pages">
+        
+   <div class="left_content">
+        <div class="block_wide">
+     <article class="dinuovo">
+        <header>
+            <h2>{{ sqlID.newstitle }}</h2>
+        </header>
+        <img src="{{ asset(['bundles/AgendaBundle/images/', sqlID.image]|join) }}" alt="{{ sqlID.newstitle }} image not found" class="large"/>
+        <div>
+            <p>{{ sqlID.infoevento }}</p>
+        </div>
+    </article>
   			         
- </div>
+ </div></div></div></div>
             <div class="right_block">
                 
                 {% render "AitamAgendaBundle:Agenda:sidebar" %}

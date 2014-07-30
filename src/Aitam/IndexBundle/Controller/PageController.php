@@ -17,7 +17,7 @@ class PageController extends Controller
     		->getEntityManager();
     	
     		$dinuovo = $em->getRepository('AitamIndexBundle:Dinuovo')
-    		->getBlogDinuovo($limit = 3);
+    		->getBlogDinuovo($limit = 4);
                 
                 $davisitare = $em->getRepository('AitamDavisitareBundle:Davisitare')
     		->getBlogDavisitare($limit = 3);

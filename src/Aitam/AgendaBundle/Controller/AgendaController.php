@@ -29,7 +29,7 @@ class AgendaController extends Controller{
     if (!$sqlID) {
         throw $this->createNotFoundException('Unable to find evento post.');
     }  
-        
+       var_dump($sqlID); 
   	return $this->render('AitamAgendaBundle:Default:evento.html.twig',
   			array(           
   					'sqlID' => $sqlID,
@@ -39,7 +39,7 @@ class AgendaController extends Controller{
   public function SidebarAction(){
       	$em = $this->getDoctrine()->getEntityManager();
       
-             $sqlID = $em->getRepository('AitamAgendaBundle:mynews')->trovadata();
+             $sqlID = $em->getRepository('AitamAgendaBundle:mynews')->trovadata($limit = 3);
             
     if (!$sqlID) {
         throw $this->createNotFoundException('Unable to find evento post.');
